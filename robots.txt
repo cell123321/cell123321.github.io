@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://cell123321.github.io/sitemap.xml
+Sitemap: https://optimasolutionsintl.com/sitemap.xml

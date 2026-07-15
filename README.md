@@ -1,12 +1,12 @@
 # Optima Business & Talent Consulting Website
 
-Upload the contents of this folder to the root of the `cell123321.github.io` repository.
+Upload the contents of this folder to the root of the `optimasolutionsintl.com` repository.
 
 ## Forms
 The forms are visual demonstrations. Connect them to Formspree or another form service before publishing.
 
 ## Custom domain
-After the site works at `https://cell123321.github.io`, add your custom domain in GitHub Pages settings, then update DNS with your domain provider.
+After the site works at `https://optimasolutionsintl.com`, add your custom domain in GitHub Pages settings, then update DNS with your domain provider.
 
 ## Version 2 updates
 - Larger logo and refined premium colour palette
@@ -24,3 +24,8 @@ After the site works at `https://cell123321.github.io`, add your custom domain i
 - Candidate accuracy confirmation and optional future-opportunity consent added.
 - Client authority confirmation added.
 - Legal wording should be reviewed by an Irish data-protection solicitor before commercial launch.
+
+## Version 7 updates
+- Premium employer and candidate pathway buttons added to the homepage.
+- Canonical URLs, sitemap and robots.txt now use https://optimasolutionsintl.com.
+- CNAME file added for GitHub Pages custom-domain deployment.
