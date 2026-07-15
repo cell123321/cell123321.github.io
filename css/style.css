@@ -229,3 +229,84 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
 @media (max-width: 980px) {
   .option-grid { grid-template-columns: 1fr; }
 }
+
+
+/* Footer logo correction */
+.brand-footer {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  width: auto;
+}
+
+.brand-footer .brand-mark {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+}
+
+.brand-footer .brand-mark::before {
+  width: 30px;
+  height: 5px;
+}
+
+.brand-footer .brand-mark::after {
+  width: 5px;
+  height: 30px;
+}
+
+.brand-footer .dot {
+  width: 13px;
+  height: 13px;
+  border-width: 3px;
+  background: #061a2f;
+}
+
+.brand-footer .dot-top {
+  top: 0;
+  left: 17.5px;
+}
+
+.brand-footer .dot-right {
+  top: 17.5px;
+  right: 0;
+}
+
+.brand-footer .dot-bottom {
+  bottom: 0;
+  left: 17.5px;
+}
+
+.brand-footer .dot-left {
+  top: 17.5px;
+  left: 0;
+}
+
+.brand-footer .brand-text {
+  display: block;
+  min-width: 0;
+}
+
+.brand-footer .brand-text strong {
+  display: block;
+  font-size: 1.28rem;
+  line-height: 1;
+  letter-spacing: 0.08em;
+}
+
+.brand-footer .brand-text small {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.66rem;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+@media (max-width: 680px) {
+  .brand-footer .brand-text small {
+    display: block;
+    white-space: normal;
+  }
+}
