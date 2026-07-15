@@ -29,3 +29,13 @@ After the site works at `https://optimasolutionsintl.com`, add your custom domai
 - Premium employer and candidate pathway buttons added to the homepage.
 - Canonical URLs, sitemap and robots.txt now use https://optimasolutionsintl.com.
 - CNAME file added for GitHub Pages custom-domain deployment.
+
+## Version 8
+- Rebuilt the employer and candidate homepage actions as two premium buttons.
+- Renamed and versioned the stylesheet to prevent browsers from loading the previous cached CSS.
+- Retains the GitHub Pages CNAME for optimasolutionsintl.com and all previous legal/GDPR updates.
+
+## Version 10.1 — Safe Messaging Polish
+- Built directly from the last fully working V8 package.
+- CSS, JavaScript, file names, layout, navigation and responsive design are unchanged.
+- Only the agreed wording and positioning refinements were applied.
