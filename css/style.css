@@ -399,3 +399,68 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
   color: var(--navy);
   font-weight: 700;
 }
+
+
+/* Homepage secondary action cards */
+.hero-secondary-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  max-width: 680px;
+  margin-top: 28px;
+}
+
+.hero-action-card {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  min-height: 92px;
+  padding: 18px 48px 18px 18px;
+  border: 1px solid rgba(11, 31, 51, 0.18);
+  background: rgba(255, 255, 255, 0.46);
+  color: var(--navy);
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.hero-action-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(49, 95, 125, 0.5);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 14px 30px rgba(11, 31, 51, 0.1);
+}
+
+.hero-action-label {
+  color: var(--blue);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero-action-card strong {
+  color: var(--navy);
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.hero-action-arrow {
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  color: var(--blue);
+  font-size: 1.2rem;
+  transform: translateY(-50%);
+}
+
+@media (max-width: 680px) {
+  .hero-secondary-actions {
+    grid-template-columns: 1fr;
+  }
+}
