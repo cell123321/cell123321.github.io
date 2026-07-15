@@ -39,3 +39,9 @@ After the site works at `https://optimasolutionsintl.com`, add your custom domai
 - Built directly from the last fully working V8 package.
 - CSS, JavaScript, file names, layout, navigation and responsive design are unchanged.
 - Only the agreed wording and positioning refinements were applied.
+
+## Version 10.2 — CSS Repair
+- Restores styling through /css/style.css?v=10.2.
+- Includes both style.css and optima-v8.css for compatibility.
+- Corrects the extra homepage hero closing div.
+- No visual redesign or content rollback.
