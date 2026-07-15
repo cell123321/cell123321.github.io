@@ -45,3 +45,9 @@ After the site works at `https://optimasolutionsintl.com`, add your custom domai
 - Includes both style.css and optima-v8.css for compatibility.
 - Corrects the extra homepage hero closing div.
 - No visual redesign or content rollback.
+
+## Version 10.3 — Inline CSS Deployment Fix
+- Full site styling is embedded directly inside every HTML page.
+- Removes reliance on GitHub Pages loading an external stylesheet.
+- Existing CSS files remain included as a backup.
+- Layout, content, JavaScript, navigation and branding are otherwise unchanged.

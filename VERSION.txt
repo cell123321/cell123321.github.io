@@ -1,2 +1,2 @@
-Optima website version 10.2 - CSS repair
-Primary stylesheet: /css/style.css?v=10.2
+Optima website version 10.3 - inline CSS deployment fix
+All pages contain the full stylesheet inside <style> tags.
