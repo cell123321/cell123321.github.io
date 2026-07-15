@@ -14,3 +14,13 @@ After the site works at `https://cell123321.github.io`, add your custom domain i
 - Candidate CV and relocation request pathways
 - Client brief upload and consultation pathway
 - Expanded industries, services and tailoring language
+
+## Version 5 legal and contact updates
+- All public email references use info@optimasolutionsintl.com.
+- Full Privacy Notice added.
+- Candidate and Client Privacy Notices added.
+- Cookie Policy updated for a no-analytics static site.
+- Mandatory GDPR acknowledgement checkboxes added to all forms.
+- Candidate accuracy confirmation and optional future-opportunity consent added.
+- Client authority confirmation added.
+- Legal wording should be reviewed by an Irish data-protection solicitor before commercial launch.

@@ -310,3 +310,92 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
     white-space: normal;
   }
 }
+
+
+/* Definitive footer wordmark fix:
+   remove the decorative symbol in the footer and use a clean text wordmark. */
+.site-footer .brand-footer .brand-mark {
+  display: none !important;
+}
+
+.site-footer .brand-footer {
+  display: inline-block !important;
+  width: auto !important;
+}
+
+.site-footer .brand-footer .brand-text {
+  display: block !important;
+}
+
+.site-footer .brand-footer .brand-text strong {
+  display: block !important;
+  margin: 0 !important;
+  color: #ffffff !important;
+  font-size: 1.45rem !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0.09em !important;
+}
+
+.site-footer .brand-footer .brand-text small {
+  display: block !important;
+  margin-top: 7px !important;
+  color: rgba(255,255,255,.64) !important;
+  font-size: 0.68rem !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0.08em !important;
+  white-space: normal !important;
+}
+
+
+/* Legal and GDPR form styling */
+.legal-copy {
+  max-width: 900px;
+}
+
+.legal-copy h2 {
+  margin-top: 3rem;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+}
+
+.legal-copy h3 {
+  margin-top: 2rem;
+}
+
+.legal-copy ul {
+  padding-left: 1.3rem;
+}
+
+.legal-copy li {
+  margin-bottom: .55rem;
+}
+
+.consent-field {
+  margin-top: .25rem;
+  padding: 16px;
+  border: 1px solid var(--border);
+  background: var(--cream);
+}
+
+.consent-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: var(--charcoal);
+  font-size: .88rem;
+  font-weight: 500;
+  line-height: 1.55;
+  letter-spacing: 0;
+}
+
+.consent-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: .2rem;
+  flex: 0 0 18px;
+  accent-color: var(--navy);
+}
+
+.consent-label a {
+  color: var(--navy);
+  font-weight: 700;
+}
