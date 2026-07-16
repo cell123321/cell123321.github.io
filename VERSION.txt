@@ -1,2 +1,1 @@
-Optima website version 10.3 - inline CSS deployment fix
-All pages contain the full stylesheet inside <style> tags.
+Optima Website V11 — Public Jobs Board

@@ -1,0 +1,80 @@
+[
+  {
+    "id": "consultant-radiologist-dublin",
+    "title": "Consultant Radiologist",
+    "location": "Dublin, Ireland",
+    "workplace": "On-site",
+    "industry": "Healthcare & Life Sciences",
+    "type": "Permanent",
+    "salary": "Competitive consultant package",
+    "closing": "Open until filled",
+    "summary": "A leading healthcare organisation is seeking an experienced Consultant Radiologist to join its specialist clinical team in Dublin.",
+    "responsibilities": [
+      "Deliver high-quality diagnostic radiology services.",
+      "Work collaboratively with multidisciplinary clinical teams.",
+      "Support service development, governance and quality improvement."
+    ],
+    "requirements": [
+      "Specialist registration or eligibility with the Irish Medical Council.",
+      "Relevant consultant-level experience.",
+      "Eligibility to work in Ireland or willingness to complete the immigration process."
+    ],
+    "benefits": [
+      "Relocation and professional-registration support.",
+      "Competitive remuneration package.",
+      "Structured onboarding and candidate support."
+    ]
+  },
+  {
+    "id": "finance-manager-cork",
+    "title": "Finance Manager",
+    "location": "Cork, Ireland",
+    "workplace": "Hybrid",
+    "industry": "Finance & Financial Services",
+    "type": "Permanent",
+    "salary": "€75,000–€90,000",
+    "closing": "15 August 2026",
+    "summary": "An established organisation is seeking a commercially focused Finance Manager to lead reporting, controls and strategic financial planning.",
+    "responsibilities": [
+      "Lead budgeting, forecasting and management reporting.",
+      "Strengthen financial controls and governance.",
+      "Partner with senior leadership on commercial decisions."
+    ],
+    "requirements": [
+      "Qualified accountant with relevant experience.",
+      "Strong management reporting and commercial finance capability.",
+      "Excellent stakeholder-management skills."
+    ],
+    "benefits": [
+      "Hybrid working arrangement.",
+      "Competitive salary and benefits.",
+      "Opportunity to influence business strategy."
+    ]
+  },
+  {
+    "id": "project-engineer-galway",
+    "title": "Project Engineer",
+    "location": "Galway, Ireland",
+    "workplace": "On-site",
+    "industry": "Construction & Engineering",
+    "type": "Contract",
+    "salary": "Competitive contract rate",
+    "closing": "Open until filled",
+    "summary": "A project-led engineering business requires a Project Engineer to support delivery, coordination and technical compliance across active sites.",
+    "responsibilities": [
+      "Coordinate project activities and technical documentation.",
+      "Liaise with clients, contractors and internal teams.",
+      "Monitor quality, safety and programme milestones."
+    ],
+    "requirements": [
+      "Engineering degree or equivalent qualification.",
+      "Relevant project-delivery experience.",
+      "Knowledge of Irish construction or engineering standards."
+    ],
+    "benefits": [
+      "Competitive contract package.",
+      "High-value project exposure.",
+      "Potential for contract extension."
+    ]
+  }
+]
