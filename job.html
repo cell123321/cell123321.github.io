@@ -1268,6 +1268,104 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
   }
 }
 
+
+/* V18 precise Optima logo-mark alignment */
+.site-header .brand-mark{
+  position:relative !important;
+  display:block !important;
+  width:52px !important;
+  height:52px !important;
+  flex:0 0 52px !important;
+}
+
+/* The cross is centred independently of the four endpoint circles. */
+.site-header .brand-mark::before,
+.site-header .brand-mark::after{
+  content:"" !important;
+  position:absolute !important;
+  left:50% !important;
+  top:50% !important;
+  z-index:1 !important;
+  background:var(--navy) !important;
+  border-radius:2px !important;
+  transform:translate(-50%,-50%) !important;
+}
+
+.site-header .brand-mark::before{
+  width:34px !important;
+  height:4px !important;
+}
+
+.site-header .brand-mark::after{
+  width:4px !important;
+  height:34px !important;
+}
+
+/* Each circle is centred exactly on the end of one arm. */
+.site-header .brand-mark .dot{
+  position:absolute !important;
+  z-index:2 !important;
+  width:14px !important;
+  height:14px !important;
+  box-sizing:border-box !important;
+  border:3px solid var(--blue) !important;
+  border-radius:50% !important;
+  background:var(--cream) !important;
+}
+
+.site-header .brand-mark .dot-top{
+  top:0 !important;
+  left:50% !important;
+  right:auto !important;
+  bottom:auto !important;
+  transform:translateX(-50%) !important;
+}
+
+.site-header .brand-mark .dot-right{
+  top:50% !important;
+  right:0 !important;
+  bottom:auto !important;
+  left:auto !important;
+  transform:translateY(-50%) !important;
+}
+
+.site-header .brand-mark .dot-bottom{
+  bottom:0 !important;
+  left:50% !important;
+  top:auto !important;
+  right:auto !important;
+  transform:translateX(-50%) !important;
+}
+
+.site-header .brand-mark .dot-left{
+  top:50% !important;
+  left:0 !important;
+  right:auto !important;
+  bottom:auto !important;
+  transform:translateY(-50%) !important;
+}
+
+@media(max-width:640px){
+  .site-header .brand-mark{
+    width:46px !important;
+    height:46px !important;
+    flex-basis:46px !important;
+  }
+
+  .site-header .brand-mark::before{
+    width:30px !important;
+  }
+
+  .site-header .brand-mark::after{
+    height:30px !important;
+  }
+
+  .site-header .brand-mark .dot{
+    width:13px !important;
+    height:13px !important;
+  }
+}
+
 </style></head><body><header class="site-header" id="top">
   <div class="container nav-wrap">
     <a class="brand" href="index.html" aria-label="Optima home">

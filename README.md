@@ -93,3 +93,9 @@ After the site works at `https://optimasolutionsintl.com`, add your custom domai
 - Uses one final canonical header CSS block across the entire site.
 - Preserves employer and candidate dropdown navigation.
 - Prevents the homepage logo from rendering differently from internal pages.
+
+## Version 18 — Logo Mark Alignment
+- Corrects the four endpoint circles so they align precisely with the cross.
+- Uses percentage-based centring rather than fixed pixel offsets.
+- Matches the supplied Optima logo reference.
+- Applies consistently across every page without changing any content or navigation.

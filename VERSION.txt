@@ -1,2 +1,2 @@
-Optima Website V17 — Unified Header Across All Pages
-The same header markup and final CSS are now used everywhere.
+Optima Website V18 — Precise Logo Alignment Fix
+Corrects the cross-and-four-circle mark on every page.
