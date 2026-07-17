@@ -1,2 +1,2 @@
-Optima Website V16 — Homepage-Only Header Correction
-Only index.html receives the logo/header override.
+Optima Website V17 — Unified Header Across All Pages
+The same header markup and final CSS are now used everywhere.

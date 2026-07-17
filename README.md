@@ -86,3 +86,10 @@ After the site works at `https://optimasolutionsintl.com`, add your custom domai
 - Corrects the landing-page logo width and tagline alignment.
 - Prevents the logo/tagline from colliding with “What We Do”.
 - Keeps the existing dropdown navigation and all page content.
+
+## Version 17 — Unified Header
+- Replaces every page header with one identical shared header structure.
+- Removes the homepage-only V16 logo override.
+- Uses one final canonical header CSS block across the entire site.
+- Preserves employer and candidate dropdown navigation.
+- Prevents the homepage logo from rendering differently from internal pages.
