@@ -65,3 +65,11 @@ After the site works at `https://optimasolutionsintl.com`, add your custom domai
 - Candidates links to CV upload, jobs, relocation support and candidate resources.
 - Works with mouse hover, keyboard focus and tap/click on mobile.
 - Restores complete supporting files for the jobs board and GitHub Pages deployment.
+
+## Version 14 — Refined Header
+- Wider 1440px navigation container.
+- Smaller, better-proportioned logo and consultation CTA.
+- Prevents desktop navigation labels from wrapping.
+- More consistent spacing and typography.
+- Subtle underline and dropdown hover animations.
+- Moves to mobile navigation sooner to avoid cramped tablet layouts.
