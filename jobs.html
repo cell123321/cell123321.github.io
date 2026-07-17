@@ -1,4 +1,5 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Jobs | Optima</title><meta name="description" content="Search current jobs with Optima."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet"><style>:root {
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Jobs | Optima</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><meta name="description" content="Search current jobs with Optima."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet"><style>:root {
   --navy: #0b1f33;
   --navy-2: #17324d;
   --blue: #315f7d;
@@ -692,10 +693,88 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
   }
 }
 .job-filter-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:14px}.job-search-panel{padding:26px;border:1px solid var(--border);background:#fff}.job-list{display:grid;gap:18px}.job-card{display:grid;grid-template-columns:1fr auto;gap:22px;align-items:center;padding:28px;border:1px solid var(--border);background:#fff;transition:.2s}.job-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.job-meta{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.job-pill{padding:5px 9px;border:1px solid var(--border);background:var(--cream);color:var(--muted);font-size:.76rem}.job-empty{display:none;padding:40px;text-align:center;border:1px solid var(--border);background:#fff}.job-detail-grid{display:grid;grid-template-columns:1fr 340px;gap:58px}.job-side{position:sticky;top:130px;padding:28px;border:1px solid var(--border);background:#fff}.job-copy h2{margin-top:2.5rem;font-size:2.2rem}@media(max-width:900px){.job-filter-grid{grid-template-columns:1fr 1fr}.job-card,.job-detail-grid{grid-template-columns:1fr}.job-side{position:static}}@media(max-width:600px){.job-filter-grid{grid-template-columns:1fr}}
+
+/* V13 dropdown navigation */
+.nav-dropdown{position:relative;display:flex;align-items:center}
+.nav-dropdown-toggle{
+  appearance:none;border:0;background:transparent;color:var(--navy);
+  font:inherit;font-weight:600;cursor:pointer;padding:10px 0;
+  display:inline-flex;align-items:center;gap:6px
+}
+.dropdown-chevron{font-size:.72em;transition:transform .2s ease}
+.nav-dropdown-menu{
+  position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(8px);
+  min-width:250px;padding:10px;background:#fff;border:1px solid var(--border);
+  box-shadow:0 18px 42px rgba(10,34,57,.14);opacity:0;visibility:hidden;
+  pointer-events:none;transition:opacity .18s ease,transform .18s ease,visibility .18s ease;
+  z-index:1200
+}
+.nav-dropdown-menu::before{
+  content:"";position:absolute;left:0;right:0;top:-14px;height:14px
+}
+.nav-dropdown-menu a{
+  display:block;padding:12px 14px;white-space:nowrap;font-weight:600;color:var(--navy)
+}
+.nav-dropdown-menu a:hover,.nav-dropdown-menu a:focus{
+  background:var(--cream);color:var(--blue)
+}
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu,
+.nav-dropdown.is-open .nav-dropdown-menu{
+  opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)
+}
+.nav-dropdown.is-open .dropdown-chevron{transform:rotate(180deg)}
+@media(max-width:980px){
+  .nav-dropdown{display:block;width:100%}
+  .nav-dropdown-toggle{width:100%;justify-content:space-between;padding:13px 0}
+  .nav-dropdown-menu{
+    position:static;transform:none!important;min-width:0;width:100%;
+    padding:0 0 0 16px;border:0;border-left:2px solid var(--border);
+    box-shadow:none;opacity:1;visibility:visible;pointer-events:auto;display:none;background:transparent
+  }
+  .nav-dropdown.is-open .nav-dropdown-menu{display:block}
+  .nav-dropdown-menu a{padding:10px 0;white-space:normal}
+}
+
 </style></head><body><header class="site-header"><div class="container nav-wrap">
 <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"><span class="dot dot-top"></span><span class="dot dot-right"></span><span class="dot dot-bottom"></span><span class="dot dot-left"></span></span><span class="brand-text"><strong>OPTIMA</strong><small>Talent, Workforce &amp; Business Solutions</small></span></a>
 <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span><span class="sr-only">Open menu</span></button>
-<nav class="primary-nav" id="primary-nav"><a href="services.html">What We Do</a><a href="industries.html">Industries</a><a href="jobs.html">Jobs</a><a href="about.html">About</a><a href="candidates.html">Candidates</a><a href="contact.html">Contact</a><a class="nav-cta" href="consultation.html">Request a Consultation</a></nav>
+<nav class="primary-nav" id="primary-nav" aria-label="Primary navigation">
+      <a href="services.html">What We Do</a>
+
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+          For Employers
+          <span class="dropdown-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="vacancies.html">Submit a Vacancy</a>
+          <a href="services.html#executive-search">Executive Search</a>
+          <a href="services.html#partnership">Recruitment Partnerships</a>
+          <a href="services.html#relocation">International Recruitment</a>
+          <a href="services.html#business-consulting">Business Consulting</a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+          Candidates
+          <span class="dropdown-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="candidates.html#submit-cv">Upload Your CV</a>
+          <a href="jobs.html">Browse Jobs</a>
+          <a href="services.html#relocation">Relocation Support</a>
+          <a href="candidates.html#candidate-resources">Candidate Resources</a>
+        </div>
+      </div>
+
+      <a href="jobs.html">Jobs</a>
+      <a href="industries.html">Industries</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a class="nav-cta" href="consultation.html">Request a Consultation</a>
+    </nav>
 </div></header><main><section class="page-hero"><div class="container"><span class="eyebrow">Optima Jobs</span><h1>Find your next opportunity.</h1><p class="lead">Search current roles across healthcare, finance, pharmaceuticals, construction, engineering, technology and professional services.</p></div></section><section class="section"><div class="container"><div class="job-search-panel"><div class="job-filter-grid"><div class="field"><label>Keywords</label><input id="job-keyword" type="search" placeholder="Job title, skill or keyword"></div><div class="field"><label>Location</label><select id="job-location"><option value="">All locations</option></select></div><div class="field"><label>Industry</label><select id="job-industry"><option value="">All industries</option></select></div><div class="field"><label>Job type</label><select id="job-type"><option value="">All types</option></select></div></div></div><p id="job-count" class="eyebrow" style="margin-top:28px"></p><div id="job-list" class="job-list"></div><div id="job-empty" class="job-empty"><h3>No matching jobs found.</h3><p>Try broader filters or join our talent network.</p><a class="btn btn-gold" href="candidates.html#submit-cv">Upload Your CV</a></div></div></section></main><footer class="site-footer"><div class="container footer-grid">
 <div><a class="brand brand-footer" href="index.html"><span class="brand-text"><strong>OPTIMA</strong><small>Talent, Workforce &amp; Business Solutions</small></span></a><p class="footer-intro">Connecting talent. Driving performance. Building futures.</p></div>
 <div><h3>Services</h3><a href="services.html#talent-acquisition">Talent Acquisition</a><a href="services.html#executive-search">Executive Search</a><a href="services.html#partnership">Recruitment Partnership</a></div>

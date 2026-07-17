@@ -713,7 +713,50 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
   }
 }
 
-  </style>
+  
+/* V13 dropdown navigation */
+.nav-dropdown{position:relative;display:flex;align-items:center}
+.nav-dropdown-toggle{
+  appearance:none;border:0;background:transparent;color:var(--navy);
+  font:inherit;font-weight:600;cursor:pointer;padding:10px 0;
+  display:inline-flex;align-items:center;gap:6px
+}
+.dropdown-chevron{font-size:.72em;transition:transform .2s ease}
+.nav-dropdown-menu{
+  position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(8px);
+  min-width:250px;padding:10px;background:#fff;border:1px solid var(--border);
+  box-shadow:0 18px 42px rgba(10,34,57,.14);opacity:0;visibility:hidden;
+  pointer-events:none;transition:opacity .18s ease,transform .18s ease,visibility .18s ease;
+  z-index:1200
+}
+.nav-dropdown-menu::before{
+  content:"";position:absolute;left:0;right:0;top:-14px;height:14px
+}
+.nav-dropdown-menu a{
+  display:block;padding:12px 14px;white-space:nowrap;font-weight:600;color:var(--navy)
+}
+.nav-dropdown-menu a:hover,.nav-dropdown-menu a:focus{
+  background:var(--cream);color:var(--blue)
+}
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu,
+.nav-dropdown.is-open .nav-dropdown-menu{
+  opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)
+}
+.nav-dropdown.is-open .dropdown-chevron{transform:rotate(180deg)}
+@media(max-width:980px){
+  .nav-dropdown{display:block;width:100%}
+  .nav-dropdown-toggle{width:100%;justify-content:space-between;padding:13px 0}
+  .nav-dropdown-menu{
+    position:static;transform:none!important;min-width:0;width:100%;
+    padding:0 0 0 16px;border:0;border-left:2px solid var(--border);
+    box-shadow:none;opacity:1;visibility:visible;pointer-events:auto;display:none;background:transparent
+  }
+  .nav-dropdown.is-open .nav-dropdown-menu{display:block}
+  .nav-dropdown-menu a{padding:10px 0;white-space:normal}
+}
+
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -737,10 +780,37 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
 
     <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation">
       <a href="services.html">What We Do</a>
-      <a href="industries.html">Industries</a>
+
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+          For Employers
+          <span class="dropdown-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="vacancies.html">Submit a Vacancy</a>
+          <a href="services.html#executive-search">Executive Search</a>
+          <a href="services.html#partnership">Recruitment Partnerships</a>
+          <a href="services.html#relocation">International Recruitment</a>
+          <a href="services.html#business-consulting">Business Consulting</a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+          Candidates
+          <span class="dropdown-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="candidates.html#submit-cv">Upload Your CV</a>
+          <a href="jobs.html">Browse Jobs</a>
+          <a href="services.html#relocation">Relocation Support</a>
+          <a href="candidates.html#candidate-resources">Candidate Resources</a>
+        </div>
+      </div>
+
       <a href="jobs.html">Jobs</a>
+      <a href="industries.html">Industries</a>
       <a href="about.html">About</a>
-      <a href="candidates.html">Candidates</a>
       <a href="contact.html">Contact</a>
       <a class="nav-cta" href="consultation.html">Request a Consultation</a>
     </nav>
@@ -809,5 +879,6 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
   </div>
 </footer>
 
+<script defer src="js/script.js"></script>
 </body>
 </html>

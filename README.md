@@ -58,3 +58,10 @@ After the site works at `https://optimasolutionsintl.com`, add your custom domai
 - Displays a date picker when “Specific date” is selected.
 - Requires the Privacy Notice and authority confirmations before submission.
 - Uses browser validation and scrolls to the first incomplete required field.
+
+## Version 13 — Dropdown Navigation
+- Adds For Employers and Candidates dropdown menus.
+- For Employers links to vacancy submission, executive search, recruitment partnerships, international recruitment and business consulting.
+- Candidates links to CV upload, jobs, relocation support and candidate resources.
+- Works with mouse hover, keyboard focus and tap/click on mobile.
+- Restores complete supporting files for the jobs board and GitHub Pages deployment.
