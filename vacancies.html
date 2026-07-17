@@ -713,7 +713,20 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
   }
 }
 
-  </style>
+  
+.required-mark{color:#9b2c2c;font-weight:700}
+.optional-label{color:var(--muted);font-weight:400;font-size:.85em}
+.form-section-heading{grid-column:1/-1;margin:12px 0 2px;padding-top:12px;border-top:1px solid var(--border)}
+.form-section-heading:first-child{border-top:0;padding-top:0}
+.form-section-heading p{margin:.35rem 0 0;color:var(--muted);font-size:.9rem}
+.form-grid-three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.form-card input:user-invalid,.form-card select:user-invalid,.form-card textarea:user-invalid{border-color:#b42318;box-shadow:0 0 0 2px rgba(180,35,24,.08)}
+.form-card input:user-valid,.form-card select:user-valid,.form-card textarea:user-valid{border-color:#6f8f7a}
+.form-error-summary{display:none;margin-bottom:20px;padding:14px 16px;border-left:4px solid #b42318;background:#fff1f0;color:#7a271a}
+.form-error-summary.is-visible{display:block}
+@media(max-width:760px){.form-grid-three{grid-template-columns:1fr}}
+
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -751,39 +764,193 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
 <main id="main">
 <section class="page-hero"><div class="container"><span class="eyebrow">Submit a Vacancy</span><h1>Tell us what your business needs.</h1><p class="lead">Submit a role, upload a recruitment brief or describe the wider workforce challenge. We will contact you to discuss the requirement and recommend a tailored delivery model.</p></div></section>
 <section class="section section-white"><div class="container grid-2"><div><h2>Looking for more than recruitment?</h2><p>Whether you are recruiting one specialist, a senior leader or an entire team, we tailor the solution to your organisation. Our partnership model can also provide ongoing recruitment expertise, workforce support and practical business assistance as your needs develop.</p></div>
-<form class="form-card" data-demo-form>
+<form class="form-card" data-demo-form id="vacancy-form" novalidate>
+<div class="form-section-heading">
+  <span class="eyebrow">Organisation details</span>
+  <p>Fields marked <span class="required-mark">*</span> are required.</p>
+</div>
+
 <div class="form-grid">
-<div class="field"><label for="v-org">Organisation</label><input id="v-org" required></div>
-<div class="field"><label for="v-name">Contact name</label><input id="v-name" required></div>
-<div class="field"><label for="v-email">Email</label><input id="v-email" type="email" required></div>
-<div class="field"><label for="v-phone">Telephone</label><input id="v-phone" type="tel"></div>
-<div class="field"><label for="v-role">Role title</label><input id="v-role" required></div>
-<div class="field"><label for="v-location">Location</label><input id="v-location"></div>
-<div class="field"><label for="v-type">Employment type</label><select id="v-type"><option>Permanent</option><option>Contract</option><option>Interim</option><option>Executive Search</option></select></div>
-<div class="field"><label for="v-salary">Salary or rate</label><input id="v-salary"></div>
-<div class="field field-full"><label for="v-heading">What support do you need?</label><input id="v-heading" placeholder="Example: Recruit 12 specialist clinicians and support relocation"></div>
-<div class="field field-full"><label for="v-details">Role, project or workforce brief</label><textarea id="v-details"></textarea></div>
-<div class="field field-full"><label for="v-file">Upload a job description or recruitment brief</label><input id="v-file" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx"></div>
-<div class="field field-full check-row"><input id="v-relocation" type="checkbox"><label for="v-relocation">This requirement may include international recruitment or relocation support.</label></div>
-<div class="field field-full check-row"><input id="v-consult" type="checkbox"><label for="v-consult">I would like to book a consultation before proceeding.</label></div>
+<div class="field">
+  <label for="v-org">Organisation <span class="required-mark" aria-hidden="true">*</span></label>
+  <input id="v-org" name="organisation" type="text" autocomplete="organization" required>
+</div>
+
+<div class="field">
+  <label for="v-name">Contact name <span class="required-mark" aria-hidden="true">*</span></label>
+  <input id="v-name" name="contact_name" type="text" autocomplete="name" required>
+</div>
+
+<div class="field">
+  <label for="v-email">Email <span class="required-mark" aria-hidden="true">*</span></label>
+  <input id="v-email" name="email" type="email" autocomplete="email" required>
+</div>
+
+<div class="field">
+  <label for="v-phone">Telephone <span class="required-mark" aria-hidden="true">*</span></label>
+  <input id="v-phone" name="telephone" type="tel" autocomplete="tel" required>
+</div>
+</div>
+
+<div class="form-section-heading">
+  <span class="eyebrow">Vacancy details</span>
+</div>
+
+<div class="form-grid">
+<div class="field">
+  <label for="v-role">Role title <span class="required-mark" aria-hidden="true">*</span></label>
+  <input id="v-role" name="role_title" type="text" required>
+</div>
+
+<div class="field">
+  <label for="v-positions">Number of positions <span class="required-mark" aria-hidden="true">*</span></label>
+  <input id="v-positions" name="number_of_positions" type="number" min="1" step="1" value="1" required>
+</div>
+
+<div class="field">
+  <label for="v-location">Location <span class="required-mark" aria-hidden="true">*</span></label>
+  <input id="v-location" name="location" type="text" placeholder="Example: Dublin, Ireland" required>
+</div>
+
+<div class="field">
+  <label for="v-workplace">Workplace <span class="required-mark" aria-hidden="true">*</span></label>
+  <select id="v-workplace" name="workplace" required>
+    <option value="" selected disabled>Select workplace</option>
+    <option value="On-site">On-site</option>
+    <option value="Hybrid">Hybrid</option>
+    <option value="Remote">Remote</option>
+  </select>
+</div>
+
+<div class="field">
+  <label for="v-type">Employment type <span class="required-mark" aria-hidden="true">*</span></label>
+  <select id="v-type" name="employment_type" required>
+    <option value="" selected disabled>Select employment type</option>
+    <option value="Permanent">Permanent</option>
+    <option value="Fixed-term">Fixed-term</option>
+    <option value="Contract">Contract</option>
+    <option value="Temporary">Temporary</option>
+    <option value="Interim">Interim</option>
+    <option value="Part-time">Part-time</option>
+    <option value="Full-time">Full-time</option>
+    <option value="Executive Search">Executive Search</option>
+  </select>
+</div>
+
+<div class="field">
+  <label for="v-urgency">Hiring urgency <span class="required-mark" aria-hidden="true">*</span></label>
+  <select id="v-urgency" name="hiring_urgency" required>
+    <option value="" selected disabled>Select urgency</option>
+    <option value="Immediate">Immediate</option>
+    <option value="Within 2 weeks">Within 2 weeks</option>
+    <option value="Within 1 month">Within 1 month</option>
+    <option value="Within 3 months">Within 3 months</option>
+    <option value="Future Planning">Future Planning</option>
+  </select>
+</div>
+
+<div class="field">
+  <label for="v-start">Start date <span class="required-mark" aria-hidden="true">*</span></label>
+  <select id="v-start" name="start_date_preference" required>
+    <option value="" selected disabled>Select start date</option>
+    <option value="Immediate">Immediate</option>
+    <option value="ASAP">ASAP</option>
+    <option value="Within 2 weeks">Within 2 weeks</option>
+    <option value="Within 1 month">Within 1 month</option>
+    <option value="Specific date">Specific date</option>
+  </select>
+</div>
+
+<div class="field" id="specific-date-field" hidden>
+  <label for="v-specific-date">Specific start date <span class="required-mark" aria-hidden="true">*</span></label>
+  <input id="v-specific-date" name="specific_start_date" type="date">
+</div>
+</div>
+
+<div class="form-section-heading">
+  <span class="eyebrow">Salary or rate</span>
+</div>
+
+<div class="form-grid form-grid-three">
+<div class="field">
+  <label for="v-salary">Salary or rate <span class="required-mark" aria-hidden="true">*</span></label>
+  <input id="v-salary" name="salary_or_rate" type="number" min="0" step="0.01" placeholder="Example: 85000" required>
+</div>
+
+<div class="field">
+  <label for="v-currency">Currency <span class="required-mark" aria-hidden="true">*</span></label>
+  <select id="v-currency" name="currency" required>
+    <option value="" selected disabled>Select currency</option>
+    <option value="EUR">EUR (€)</option>
+    <option value="GBP">GBP (£)</option>
+    <option value="USD">USD ($)</option>
+    <option value="ZAR">ZAR (R)</option>
+    <option value="AUD">AUD (A$)</option>
+    <option value="CAD">CAD (C$)</option>
+    <option value="Other">Other</option>
+  </select>
+</div>
+
+<div class="field">
+  <label for="v-frequency">Pay frequency <span class="required-mark" aria-hidden="true">*</span></label>
+  <select id="v-frequency" name="pay_frequency" required>
+    <option value="" selected disabled>Select frequency</option>
+    <option value="Per year">Per year</option>
+    <option value="Per month">Per month</option>
+    <option value="Per week">Per week</option>
+    <option value="Per day">Per day</option>
+    <option value="Per hour">Per hour</option>
+  </select>
+</div>
+</div>
+
+<div class="form-section-heading">
+  <span class="eyebrow">Recruitment requirement</span>
+</div>
+
+<div class="form-grid">
+<div class="field field-full">
+  <label for="v-heading">What support do you need? <span class="required-mark" aria-hidden="true">*</span></label>
+  <input id="v-heading" name="support_required" type="text" placeholder="Example: Recruit 12 specialist clinicians and support relocation" required>
+</div>
+
+<div class="field field-full">
+  <label for="v-details">Role, project or workforce brief <span class="required-mark" aria-hidden="true">*</span></label>
+  <textarea id="v-details" name="brief" required></textarea>
+</div>
+
+<div class="field field-full">
+  <label for="v-file">Upload a job description or recruitment brief <span class="optional-label">(optional)</span></label>
+  <input id="v-file" name="job_description" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx">
+</div>
+
+<div class="field field-full check-row">
+  <input id="v-relocation" name="international_relocation" type="checkbox">
+  <label for="v-relocation">This requirement may include international recruitment or relocation support.</label>
+</div>
+
+<div class="field field-full check-row">
+  <input id="v-consult" name="consultation_requested" type="checkbox">
+  <label for="v-consult">I would like to book a consultation before proceeding.</label>
+</div>
 </div>
 
 <div class="field field-full consent-field">
   <label class="consent-label">
     <input name="privacy-consent" type="checkbox" required>
-    <span>I confirm that I have read the <a href="privacy.html" target="_blank" rel="noopener">Privacy Notice</a> and understand how Optima Solutions International Limited will process the personal information submitted through this form.</span>
+    <span>I confirm that I have read the <a href="privacy.html" target="_blank" rel="noopener">Privacy Notice</a> and understand how Optima Solutions International Limited will process the information submitted through this form. <span class="required-mark" aria-hidden="true">*</span></span>
   </label>
 </div>
 
 <div class="field field-full consent-field">
   <label class="consent-label">
     <input name="client-authority" type="checkbox" required>
-    <span>I confirm that I am authorised to submit this vacancy, recruitment brief or business enquiry on behalf of the organisation identified above.</span>
+    <span>I confirm that I am authorised to submit this vacancy, recruitment brief or business enquiry on behalf of the organisation identified above. <span class="required-mark" aria-hidden="true">*</span></span>
   </label>
 </div>
 
 <button class="btn" type="submit">Submit Your Vacancy</button>
-<p class="form-status form-note"></p>
+<p class="form-status form-note" aria-live="polite"></p>
 </form></div></section>
 
 <section class="section section-stone">
@@ -847,6 +1014,54 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
     </div>
   </div>
 </footer>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("vacancy-form");
+  const startSelect = document.getElementById("v-start");
+  const dateField = document.getElementById("specific-date-field");
+  const dateInput = document.getElementById("v-specific-date");
+
+  function updateSpecificDate() {
+    const needsDate = startSelect.value === "Specific date";
+    dateField.hidden = !needsDate;
+    dateInput.required = needsDate;
+    if (!needsDate) dateInput.value = "";
+  }
+
+  startSelect.addEventListener("change", updateSpecificDate);
+  updateSpecificDate();
+
+  const summary = document.createElement("div");
+  summary.className = "form-error-summary";
+  summary.setAttribute("role", "alert");
+  summary.textContent = "Please complete all required fields and mandatory consent checkboxes before submitting.";
+  form.insertBefore(summary, form.firstChild);
+
+  form.addEventListener("submit", function (event) {
+    updateSpecificDate();
+
+    if (!form.checkValidity()) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      summary.classList.add("is-visible");
+
+      const firstInvalid = form.querySelector(":invalid");
+      if (firstInvalid) {
+        firstInvalid.focus({preventScroll:true});
+        firstInvalid.scrollIntoView({behavior:"smooth", block:"center"});
+      }
+    } else {
+      summary.classList.remove("is-visible");
+    }
+  }, true);
+
+  form.addEventListener("input", function () {
+    if (form.checkValidity()) summary.classList.remove("is-visible");
+  });
+});
+</script>
 
 </body>
 </html>

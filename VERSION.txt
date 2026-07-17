@@ -1,1 +1,2 @@
-Optima Website V11 — Public Jobs Board
+Optima Website V12 — Required Vacancy Form
+Adds currency, pay frequency, positions, workplace, start date and hiring urgency.

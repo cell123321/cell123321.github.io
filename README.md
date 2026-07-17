@@ -51,3 +51,10 @@ After the site works at `https://optimasolutionsintl.com`, add your custom domai
 - Removes reliance on GitHub Pages loading an external stylesheet.
 - Existing CSS files remain included as a backup.
 - Layout, content, JavaScript, navigation and branding are otherwise unchanged.
+
+## Version 12 — Vacancy Form Upgrade
+- Mandatory organisation, contact, email, telephone, role, location, employment type and salary/rate fields.
+- Adds number of positions, workplace, currency, pay frequency, start date and hiring urgency.
+- Displays a date picker when “Specific date” is selected.
+- Requires the Privacy Notice and authority confirmations before submission.
+- Uses browser validation and scrolls to the first incomplete required field.
