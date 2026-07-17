@@ -928,6 +928,93 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
   }
 }
 
+
+/* V15 corrective header and page visibility fix */
+.reveal{
+  opacity:1 !important;
+  transform:none !important;
+}
+
+/* Keep the original logo geometry intact */
+.site-header .brand{
+  max-width:310px;
+}
+.site-header .brand-mark{
+  width:62px;
+  height:62px;
+  flex:0 0 62px;
+}
+.site-header .brand-text strong{
+  font-size:1.35rem;
+  line-height:1.05;
+}
+.site-header .brand-text small{
+  font-size:.64rem;
+  line-height:1.35;
+  letter-spacing:.10em;
+  white-space:normal;
+  max-width:230px;
+}
+
+/* Cleaner desktop header proportions */
+.nav-wrap{
+  max-width:1380px;
+  min-height:92px;
+  gap:30px;
+}
+.primary-nav{
+  gap:22px;
+}
+.primary-nav > a,
+.nav-dropdown-toggle{
+  font-size:.88rem;
+}
+.nav-cta{
+  padding:13px 18px !important;
+  font-size:.84rem !important;
+}
+
+/* Support both historic and current mobile-menu class names */
+.primary-nav.open,
+.primary-nav.is-open{
+  display:flex;
+}
+
+@media(max-width:1180px){
+  .site-header .brand{
+    max-width:280px;
+  }
+  .primary-nav{
+    gap:16px;
+  }
+  .primary-nav > a,
+  .nav-dropdown-toggle{
+    font-size:.82rem;
+  }
+  .nav-cta{
+    padding:12px 15px !important;
+    font-size:.78rem !important;
+  }
+}
+
+@media(max-width:1060px){
+  .nav-wrap{
+    min-height:86px;
+  }
+  .site-header .brand-mark{
+    width:54px;
+    height:54px;
+    flex-basis:54px;
+  }
+  .site-header .brand-text strong{
+    font-size:1.22rem;
+  }
+  .site-header .brand-text small{
+    font-size:.58rem;
+    max-width:210px;
+  }
+}
+
 </style>
 </head>
 <body>

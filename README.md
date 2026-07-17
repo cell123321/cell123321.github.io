@@ -73,3 +73,10 @@ After the site works at `https://optimasolutionsintl.com`, add your custom domai
 - More consistent spacing and typography.
 - Subtle underline and dropdown hover animations.
 - Moves to mobile navigation sooner to avoid cramped tablet layouts.
+
+## Version 15 — Corrective Fix
+- Restores all homepage and page content that was hidden by reveal animations.
+- Restores the original logo geometry so the mark renders correctly.
+- Refines the header without compressing or distorting the branding.
+- Supports both existing mobile menu class names.
+- Preserves the employer and candidate dropdown navigation.
