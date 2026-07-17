@@ -1,1 +1,2 @@
-Optima Website V15 — Header and Page Visibility Fix
+Optima Website V16 — Homepage-Only Header Correction
+Only index.html receives the logo/header override.

@@ -1015,9 +1015,53 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
   }
 }
 
+
+/* V16 homepage-only header correction */
+@media(min-width:1061px){
+  body.home-page .site-header .brand{
+    width:250px !important;
+    max-width:250px !important;
+    flex:0 0 250px !important;
+    gap:12px !important;
+  }
+  body.home-page .site-header .brand-mark{
+    width:48px !important;
+    height:48px !important;
+    flex:0 0 48px !important;
+  }
+  body.home-page .site-header .brand-text{
+    min-width:0 !important;
+    width:190px !important;
+  }
+  body.home-page .site-header .brand-text strong{
+    display:block !important;
+    font-size:1.22rem !important;
+    line-height:1 !important;
+    letter-spacing:.09em !important;
+  }
+  body.home-page .site-header .brand-text small{
+    display:block !important;
+    width:190px !important;
+    max-width:190px !important;
+    margin-top:5px !important;
+    font-size:.53rem !important;
+    line-height:1.2 !important;
+    letter-spacing:.085em !important;
+    white-space:nowrap !important;
+    overflow:visible !important;
+  }
+  body.home-page .nav-wrap{
+    max-width:1400px !important;
+    gap:24px !important;
+  }
+  body.home-page .primary-nav{
+    gap:20px !important;
+  }
+}
+
 </style>
 </head>
-<body>
+<body class="home-page">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header" id="top">

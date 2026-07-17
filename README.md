@@ -80,3 +80,9 @@ After the site works at `https://optimasolutionsintl.com`, add your custom domai
 - Refines the header without compressing or distorting the branding.
 - Supports both existing mobile menu class names.
 - Preserves the employer and candidate dropdown navigation.
+
+## Version 16 — Homepage-Only Header Correction
+- Leaves all internal pages unchanged.
+- Corrects the landing-page logo width and tagline alignment.
+- Prevents the logo/tagline from colliding with “What We Do”.
+- Keeps the existing dropdown navigation and all page content.
