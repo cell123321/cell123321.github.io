@@ -1386,6 +1386,176 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
   }
 }
 
+
+/* V19 trust section and Deloitte-inspired footer */
+.trust-band{
+  background:#f7f3ec;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.trust-band-inner{
+  display:grid;
+  grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);
+  gap:64px;
+  align-items:center;
+  padding-top:58px;
+  padding-bottom:58px;
+}
+.trust-band h2{
+  margin:.35rem 0 .6rem;
+  font-size:clamp(2.2rem,4vw,4.4rem);
+}
+.trust-band-lead{
+  margin:0;
+  color:var(--muted);
+  font-size:1.1rem;
+}
+.trust-band-points{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px 28px;
+}
+.trust-band-points span{
+  position:relative;
+  padding-left:24px;
+  color:var(--navy);
+  font-weight:600;
+}
+.trust-band-points span::before{
+  content:"✓";
+  position:absolute;
+  left:0;
+  color:var(--blue);
+  font-weight:700;
+}
+
+.site-footer-premium{
+  background:#050505;
+  color:#fff;
+  padding:0;
+}
+.footer-connect{
+  display:grid;
+  grid-template-columns:1.15fr 2fr .9fr;
+  gap:56px;
+  padding-top:64px;
+  padding-bottom:64px;
+}
+.footer-connect-copy h2{
+  margin:.45rem 0 1rem;
+  color:#fff;
+  font-size:clamp(2rem,3.6vw,4rem);
+}
+.footer-connect-copy p,
+.footer-social-panel p{
+  color:rgba(255,255,255,.72);
+}
+.footer-eyebrow{
+  color:#fff;
+}
+.footer-link-groups{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:34px 46px;
+}
+.site-footer-premium h3{
+  margin:0 0 14px;
+  color:#fff;
+  font-size:.88rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.site-footer-premium a{
+  color:rgba(255,255,255,.78);
+  text-decoration:none;
+}
+.site-footer-premium a:hover,
+.site-footer-premium a:focus{
+  color:#fff;
+}
+.footer-link-groups a{
+  display:block;
+  margin:0 0 10px;
+}
+.footer-social-panel{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  align-items:flex-start;
+}
+.linkedin-link{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-weight:700;
+}
+.linkedin-link svg{
+  width:24px;
+  height:24px;
+}
+.footer-legal{
+  background:#fff;
+  color:var(--navy);
+}
+.footer-legal-inner{
+  display:flex;
+  justify-content:space-between;
+  gap:24px;
+  align-items:center;
+  padding-top:22px;
+  padding-bottom:22px;
+}
+.footer-legal-inner p{
+  margin:0;
+  font-size:.82rem;
+}
+.footer-legal-inner div{
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+}
+.footer-legal a{
+  color:var(--navy);
+  font-size:.82rem;
+}
+
+@media(max-width:1050px){
+  .trust-band-inner{
+    grid-template-columns:1fr;
+    gap:32px;
+  }
+  .footer-connect{
+    grid-template-columns:1fr 1.6fr;
+  }
+  .footer-social-panel{
+    grid-column:1/-1;
+  }
+}
+@media(max-width:760px){
+  .trust-band-points{
+    grid-template-columns:1fr;
+  }
+  .footer-connect{
+    grid-template-columns:1fr;
+    gap:38px;
+  }
+  .footer-link-groups{
+    grid-template-columns:1fr 1fr;
+  }
+  .footer-social-panel{
+    grid-column:auto;
+  }
+  .footer-legal-inner{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
+@media(max-width:520px){
+  .footer-link-groups{
+    grid-template-columns:1fr;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1551,59 +1721,82 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
   </section>
 </main>
 
-<footer class="site-footer">
-  <div class="container footer-grid">
-    <div>
-      <a class="brand brand-footer" href="index.html">
-        <span class="brand-mark" aria-hidden="true">
-          <span class="dot dot-top"></span><span class="dot dot-right"></span>
-          <span class="dot dot-bottom"></span><span class="dot dot-left"></span>
-        </span>
-        <span class="brand-text">
-          <strong>OPTIMA</strong>
-          <small>Talent, Workforce &amp; Business Solutions</small>
-        </span>
+
+<footer class="site-footer site-footer-premium">
+  <div class="container footer-connect">
+    <div class="footer-connect-copy">
+      <span class="eyebrow footer-eyebrow">Let's connect</span>
+      <h2>Build stronger teams and better businesses.</h2>
+      <p>Partner with Optima for recruitment, workforce and business consultancy solutions across Ireland and internationally.</p>
+    </div>
+
+    <div class="footer-link-groups">
+      <div>
+        <h3>Services</h3>
+        <a href="services.html#talent-acquisition">Talent Acquisition</a>
+        <a href="services.html#executive-search">Executive Search</a>
+        <a href="services.html#partnership">Recruitment Partnerships</a>
+        <a href="services.html#relocation">International Recruitment</a>
+        <a href="services.html#business-consulting">Business Consulting</a>
+      </div>
+
+      <div>
+        <h3>For Employers</h3>
+        <a href="vacancies.html">Submit a Vacancy</a>
+        <a href="services.html">Workforce Solutions</a>
+        <a href="services.html#business-consulting">HR &amp; Compliance</a>
+        <a href="consultation.html">Request a Consultation</a>
+        <a href="industries.html">Industries</a>
+      </div>
+
+      <div>
+        <h3>Candidates</h3>
+        <a href="jobs.html">Browse Jobs</a>
+        <a href="candidates.html#submit-cv">Upload Your CV</a>
+        <a href="candidates.html#candidate-resources">Candidate Resources</a>
+        <a href="services.html#relocation">Relocation Support</a>
+      </div>
+
+      <div>
+        <h3>Company</h3>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="cookies.html">Cookie Policy</a>
+        <a href="terms.html">Terms of Use</a>
+      </div>
+    </div>
+
+    <div class="footer-social-panel">
+      <div>
+        <h3>Follow Optima</h3>
+        <p>Stay connected for the latest vacancies, workforce insights and industry updates.</p>
+      </div>
+      <a class="linkedin-link" href="https://www.linkedin.com/company/108504411/" target="_blank" rel="noopener noreferrer" aria-label="Follow Optima on LinkedIn">
+        
+<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+  <path fill="currentColor" d="M6.94 8.5H3.56V19h3.38V8.5ZM5.25 3A1.96 1.96 0 1 0 5.25 6.92 1.96 1.96 0 0 0 5.25 3ZM20.44 12.98c0-3.16-1.69-4.63-3.94-4.63-1.82 0-2.63 1-3.08 1.7V8.5h-3.38V19h3.38v-5.2c0-1.37.26-2.7 1.96-2.7 1.67 0 1.69 1.56 1.69 2.8V19h3.37v-6.02Z"/>
+</svg>
+
+        <span>LinkedIn</span>
       </a>
-      <p class="footer-intro">Connecting talent. Driving performance. Building futures.</p>
-    </div>
-
-    <div>
-      <h3>Services</h3>
-      <a href="services.html#talent-acquisition">Talent Acquisition</a>
-      <a href="services.html#executive-search">Executive Search</a>
-      <a href="services.html#partnership">Recruitment Partnership</a>
-      <a href="services.html#relocation">International Recruitment &amp; Relocation</a>
-    </div>
-
-    <div>
-      <h3>Company</h3>
-      <a href="about.html">About Us</a>
-      <a href="industries.html">Industries</a>
-      <a href="jobs.html">Jobs</a>
-      <a href="candidates.html">Candidates</a>
-      <a href="contact.html">Contact</a>
-    </div>
-
-    <div>
-      <h3>Get Started</h3>
-      <a href="vacancies.html">Submit a Vacancy</a>
-      <a href="consultation.html">Request a Consultation</a>
-      <a href="candidates.html#submit-cv">Upload Your CV</a>
       <a href="mailto:info@optimasolutionsintl.com">info@optimasolutionsintl.com</a>
+      <span>Dublin, Ireland</span>
     </div>
   </div>
 
-  <div class="container footer-bottom">
-    <p>© 2026 Optima Solutions International Limited. Registered in Ireland.</p>
-    <div>
-      <a href="privacy.html">Privacy Notice</a>
-      <a href="candidate-privacy.html">Candidate Privacy</a>
-      <a href="client-privacy.html">Client Privacy</a>
-      <a href="cookies.html">Cookies</a>
-      <a href="terms.html">Terms</a>
+  <div class="footer-legal">
+    <div class="container footer-legal-inner">
+      <p>© 2026 Optima Solutions International Limited. All rights reserved.</p>
+      <div>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="cookies.html">Cookie Policy</a>
+        <a href="terms.html">Terms of Use</a>
+      </div>
     </div>
   </div>
 </footer>
+
 
 <script defer src="js/script.js"></script>
 </body>

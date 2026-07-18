@@ -99,3 +99,10 @@ After the site works at `https://optimasolutionsintl.com`, add your custom domai
 - Uses percentage-based centring rather than fixed pixel offsets.
 - Matches the supplied Optima logo reference.
 - Applies consistently across every page without changing any content or navigation.
+
+## Version 19 — Trust Section, Footer and LinkedIn
+- Adds the “Recruitment. Workforce. Business.” trust section.
+- Adds a Deloitte-inspired black footer with structured navigation.
+- Adds LinkedIn using the public company URL: https://www.linkedin.com/company/108504411/
+- Includes email and Dublin location, with no telephone number.
+- Leaves the header, forms, jobs board and page content unchanged.
