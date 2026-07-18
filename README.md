@@ -122,3 +122,10 @@ Embeds a self-contained mobile navigation controller in every HTML page. This re
 
 ## V20.3
 Adds the Optima Instagram profile beside LinkedIn in the footer on every page. The icon is white by default and displays the Instagram gradient on hover. All V20.2 mobile navigation fixes are retained.
+
+
+## V20.4
+- Replaces duplicate mobile-menu event handlers with one shared controller.
+- Ensures the hamburger menu works consistently across all HTML pages.
+- Adds Facebook beside LinkedIn and Instagram.
+- Updates Instagram to the supplied QR/share URL.

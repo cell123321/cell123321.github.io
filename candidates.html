@@ -15,9 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
-<script defer src="js/script.js?v=8.0"></script>
-
-  <style>
+<style>
 
 :root {
   --navy: #0b1f33;
@@ -1817,6 +1815,81 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
   border-radius:4px;
 }
 
+
+/* ======================================================
+   V20.4 - Unified mobile navigation and social links
+   ====================================================== */
+@media (max-width: 1060px) {
+  .site-header .primary-nav {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .site-header .primary-nav.open,
+  .site-header .primary-nav.is-open {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+  }
+
+  .menu-toggle {
+    position: relative;
+    z-index: 1002;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  .menu-toggle span:not(.sr-only) {
+    pointer-events: none;
+  }
+
+  .site-header .nav-dropdown-menu {
+    display: none;
+  }
+
+  .site-header .nav-dropdown.is-open .nav-dropdown-menu {
+    display: grid !important;
+  }
+}
+
+.footer-social-links .facebook-link {
+  width: 32px !important;
+  height: 32px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  color: #fff;
+  transition: transform .22s ease, color .22s ease, filter .22s ease;
+}
+
+.footer-social-links .facebook-link svg {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+.footer-social-links .facebook-link:hover,
+.footer-social-links .facebook-link:focus-visible {
+  color: #1877F2 !important;
+  transform: translateY(-2px) scale(1.08);
+  filter: drop-shadow(0 5px 12px rgba(24,119,242,.28));
+}
+
+.footer-social-links .facebook-link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
 </style>
 </head>
 <body>
@@ -2001,7 +2074,7 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
       </div>
       <div class="footer-social-links">
       <a class="linkedin-link" title="Follow Optima on LinkedIn" aria-label="Follow Optima on LinkedIn" href="https://www.linkedin.com/company/108504411/" target="_blank" rel="noopener noreferrer" aria-label="Follow Optima on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.94 8.5H3.56V19h3.38V8.5ZM5.25 3A1.96 1.96 0 1 0 5.25 6.92 1.96 1.96 0 0 0 5.25 3ZM20.44 12.98c0-3.16-1.69-4.63-3.94-4.63-1.82 0-2.63 1-3.08 1.7V8.5h-3.38V19h3.38v-5.2c0-1.37.26-2.7 1.96-2.7 1.67 0 1.69 1.56 1.69 2.8V19h3.37v-6.02Z"/></svg></a>
-      <a class="instagram-link" title="Follow Optima on Instagram" aria-label="Follow Optima on Instagram" href="https://www.instagram.com/optima_businesstalent/" target="_blank" rel="noopener noreferrer">
+      <a class="instagram-link" title="Follow Optima on Instagram" aria-label="Follow Optima on Instagram" href="https://www.instagram.com/optima_businesstalent?igsh=N3Nndnp1enhmMXI1&utm_source=qr" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <defs>
             <linearGradient id="instagram-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
@@ -2013,6 +2086,11 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
             </linearGradient>
           </defs>
           <path class="instagram-icon-path" fill="currentColor" d="M7.75 2h8.5A5.76 5.76 0 0 1 22 7.75v8.5A5.76 5.76 0 0 1 16.25 22h-8.5A5.76 5.76 0 0 1 2 16.25v-8.5A5.76 5.76 0 0 1 7.75 2Zm0 2A3.76 3.76 0 0 0 4 7.75v8.5A3.76 3.76 0 0 0 7.75 20h8.5A3.76 3.76 0 0 0 20 16.25v-8.5A3.76 3.76 0 0 0 16.25 4h-8.5Zm8.75 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/>
+        </svg>
+      </a>
+      <a class="facebook-link" title="Follow Optima on Facebook" aria-label="Follow Optima on Facebook" href="https://www.facebook.com/share/19LsGL8zAk/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M13.5 22v-8h2.7l.4-3.1h-3.1V8.9c0-.9.3-1.5 1.6-1.5h1.7V4.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V14h2.8v8h3.4Z"/>
         </svg>
       </a>
       </div>
@@ -2033,103 +2111,6 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
   </div>
 </footer>
 
-
-<script defer src="js/script.js"></script>
-
-<script>
-/* V20.2 - Self-contained mobile navigation control */
-(function () {
-  function initialiseOptimaNavigation() {
-    var toggles = document.querySelectorAll(".menu-toggle");
-
-    toggles.forEach(function (toggle) {
-      if (toggle.dataset.optimaMenuReady === "true") return;
-
-      var navId = toggle.getAttribute("aria-controls") || "primary-nav";
-      var nav = document.getElementById(navId);
-      if (!nav) return;
-
-      toggle.dataset.optimaMenuReady = "true";
-
-      function setMenu(open) {
-        toggle.setAttribute("aria-expanded", open ? "true" : "false");
-        nav.classList.toggle("open", open);
-        nav.classList.toggle("is-open", open);
-        document.documentElement.classList.toggle("mobile-menu-open", open);
-      }
-
-      toggle.addEventListener("click", function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        setMenu(toggle.getAttribute("aria-expanded") !== "true");
-      });
-
-      nav.querySelectorAll("a").forEach(function (link) {
-        link.addEventListener("click", function () {
-          if (window.matchMedia("(max-width: 1060px)").matches) {
-            setMenu(false);
-          }
-        });
-      });
-
-      document.addEventListener("click", function (event) {
-        if (
-          toggle.getAttribute("aria-expanded") === "true" &&
-          !nav.contains(event.target) &&
-          !toggle.contains(event.target)
-        ) {
-          setMenu(false);
-        }
-      });
-
-      document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
-          setMenu(false);
-          toggle.focus();
-        }
-      });
-
-      window.addEventListener("resize", function () {
-        if (window.innerWidth > 1060) setMenu(false);
-      });
-    });
-
-    document.querySelectorAll(".nav-dropdown-toggle").forEach(function (button) {
-      if (button.dataset.optimaDropdownReady === "true") return;
-      button.dataset.optimaDropdownReady = "true";
-
-      button.addEventListener("click", function (event) {
-        if (!window.matchMedia("(max-width: 1060px)").matches) return;
-
-        event.preventDefault();
-        event.stopPropagation();
-
-        var dropdown = button.closest(".nav-dropdown");
-        if (!dropdown) return;
-
-        var open = !dropdown.classList.contains("is-open");
-
-        document.querySelectorAll(".nav-dropdown.is-open").forEach(function (item) {
-          if (item !== dropdown) {
-            item.classList.remove("is-open");
-            var otherButton = item.querySelector(".nav-dropdown-toggle");
-            if (otherButton) otherButton.setAttribute("aria-expanded", "false");
-          }
-        });
-
-        dropdown.classList.toggle("is-open", open);
-        button.setAttribute("aria-expanded", open ? "true" : "false");
-      });
-    });
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initialiseOptimaNavigation);
-  } else {
-    initialiseOptimaNavigation();
-  }
-})();
-</script>
-
+<script defer src="js/script.js?v=20.4"></script>
 </body>
 </html>

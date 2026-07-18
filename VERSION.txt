@@ -1,2 +1,2 @@
-V20.3 - Instagram footer link
-Instagram added beside LinkedIn on every page.
+V20.4 - Unified mobile navigation, Facebook and updated Instagram
+Removed duplicate mobile-menu event handlers and standardised every page on one shared script.

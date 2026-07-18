@@ -1,66 +1,94 @@
-
-document.addEventListener("DOMContentLoaded", () => {
-  // Ensure all content is visible even when animation observers are unavailable.
-  document.querySelectorAll(".reveal").forEach((element) => {
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".reveal").forEach(function (element) {
     element.classList.add("visible");
   });
 
-  const menuToggle = document.querySelector(".menu-toggle");
-  const primaryNav = document.getElementById("primary-nav");
+  var mobileQuery = window.matchMedia("(max-width: 1060px)");
 
-  if (menuToggle && primaryNav) {
-    menuToggle.addEventListener("click", () => {
-      const expanded = menuToggle.getAttribute("aria-expanded") === "true";
-      const nextState = !expanded;
+  document.querySelectorAll(".menu-toggle").forEach(function (toggle) {
+    var navId = toggle.getAttribute("aria-controls") || "primary-nav";
+    var nav = document.getElementById(navId);
 
-      menuToggle.setAttribute("aria-expanded", String(nextState));
-      primaryNav.classList.toggle("open", nextState);
-      primaryNav.classList.toggle("is-open", nextState);
-    });
-  }
+    if (!nav) {
+      return;
+    }
 
-  document.querySelectorAll(".nav-dropdown-toggle").forEach((button) => {
-    button.addEventListener("click", (event) => {
+    function setMenuState(open) {
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.classList.toggle("is-open", open);
+      nav.classList.toggle("open", open);
+      nav.classList.toggle("is-open", open);
+      document.documentElement.classList.toggle("mobile-menu-open", open);
+    }
+
+    toggle.addEventListener("click", function (event) {
+      event.preventDefault();
       event.stopPropagation();
 
-      const dropdown = button.closest(".nav-dropdown");
-      const isOpen = dropdown.classList.contains("is-open");
+      var isOpen = toggle.getAttribute("aria-expanded") === "true";
+      setMenuState(!isOpen);
+    });
 
-      document.querySelectorAll(".nav-dropdown.is-open").forEach((item) => {
+    nav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        if (mobileQuery.matches) {
+          setMenuState(false);
+        }
+      });
+    });
+
+    document.addEventListener("click", function (event) {
+      if (
+        toggle.getAttribute("aria-expanded") === "true" &&
+        !toggle.contains(event.target) &&
+        !nav.contains(event.target)
+      ) {
+        setMenuState(false);
+      }
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
+        setMenuState(false);
+        toggle.focus();
+      }
+    });
+
+    window.addEventListener("resize", function () {
+      if (!mobileQuery.matches) {
+        setMenuState(false);
+      }
+    });
+  });
+
+  document.querySelectorAll(".nav-dropdown-toggle").forEach(function (button) {
+    button.addEventListener("click", function (event) {
+      if (!mobileQuery.matches) {
+        return;
+      }
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      var dropdown = button.closest(".nav-dropdown");
+      if (!dropdown) {
+        return;
+      }
+
+      var shouldOpen = !dropdown.classList.contains("is-open");
+
+      document.querySelectorAll(".nav-dropdown.is-open").forEach(function (item) {
         if (item !== dropdown) {
           item.classList.remove("is-open");
-          item.querySelector(".nav-dropdown-toggle")
-            ?.setAttribute("aria-expanded", "false");
+          var otherButton = item.querySelector(".nav-dropdown-toggle");
+          if (otherButton) {
+            otherButton.setAttribute("aria-expanded", "false");
+          }
         }
       });
 
-      dropdown.classList.toggle("is-open", !isOpen);
-      button.setAttribute("aria-expanded", String(!isOpen));
+      dropdown.classList.toggle("is-open", shouldOpen);
+      button.setAttribute("aria-expanded", shouldOpen ? "true" : "false");
     });
-  });
-
-  document.addEventListener("click", (event) => {
-    if (!event.target.closest(".nav-dropdown")) {
-      document.querySelectorAll(".nav-dropdown.is-open").forEach((dropdown) => {
-        dropdown.classList.remove("is-open");
-        dropdown.querySelector(".nav-dropdown-toggle")
-          ?.setAttribute("aria-expanded", "false");
-      });
-    }
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      document.querySelectorAll(".nav-dropdown.is-open").forEach((dropdown) => {
-        dropdown.classList.remove("is-open");
-        dropdown.querySelector(".nav-dropdown-toggle")
-          ?.setAttribute("aria-expanded", "false");
-      });
-
-      if (primaryNav && menuToggle) {
-        primaryNav.classList.remove("open", "is-open");
-        menuToggle.setAttribute("aria-expanded", "false");
-      }
-    }
   });
 });
