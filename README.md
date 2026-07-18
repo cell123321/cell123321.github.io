@@ -110,3 +110,7 @@ After the site works at `https://optimasolutionsintl.com`, add your custom domai
 
 ## V20
 Adds a continuous hover rotation animation for the homepage hero logo. Apply class="hero-logo" to the large landing-page logo wrapper only.
+
+
+## V20.1
+Restores the blue mobile navigation button in the top-right corner, with white hamburger lines and an accessible open/close animation. Desktop navigation and all existing pages remain unchanged.

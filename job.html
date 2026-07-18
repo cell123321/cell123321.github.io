@@ -1640,6 +1640,81 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
     to{transform:rotate(360deg);}
 }
 
+
+/* ======================================================
+   V20.1 - Mobile navigation button visibility fix
+   Restores the blue top-right hamburger button.
+   Desktop navigation is unaffected.
+   ====================================================== */
+@media (max-width: 1060px) {
+  .site-header .menu-toggle {
+    display: inline-flex !important;
+    flex: 0 0 46px;
+    width: 46px;
+    height: 46px;
+    margin-left: auto;
+    padding: 11px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 2px;
+    background: var(--blue, #1769aa) !important;
+    box-shadow: 0 7px 18px rgba(10,34,57,.16);
+    cursor: pointer;
+    position: relative;
+    z-index: 1002;
+  }
+
+  .site-header .menu-toggle span:not(.sr-only) {
+    display: block !important;
+    width: 23px;
+    height: 2px;
+    margin: 0 !important;
+    border-radius: 2px;
+    background: #fff !important;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+
+  .site-header .menu-toggle:hover,
+  .site-header .menu-toggle:focus-visible {
+    background: var(--navy, #0b1f33) !important;
+    outline: 3px solid rgba(23,105,170,.22);
+    outline-offset: 2px;
+  }
+
+  .site-header .menu-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .site-header .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .site-header .menu-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .site-header {
+    position: relative;
+    z-index: 1000;
+  }
+
+  .site-header .primary-nav {
+    z-index: 1001;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-header .menu-toggle {
+    flex-basis: 44px;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+  }
+}
+
 </style></head><body><header class="site-header" id="top">
   <div class="container nav-wrap">
     <a class="brand" href="index.html" aria-label="Optima home">
