@@ -114,3 +114,7 @@ Adds a continuous hover rotation animation for the homepage hero logo. Apply cla
 
 ## V20.1
 Restores the blue mobile navigation button in the top-right corner, with white hamburger lines and an accessible open/close animation. Desktop navigation and all existing pages remain unchanged.
+
+
+## V20.2
+Embeds a self-contained mobile navigation controller in every HTML page. This removes reliance on the external JavaScript file for opening and closing the mobile menu, while retaining the existing desktop navigation.

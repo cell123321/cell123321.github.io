@@ -1,1 +1,2 @@
-V20.1 - Mobile navigation button visibility fix
+V20.2 - Mobile navigation functionality fix
+The mobile menu control is embedded directly in every HTML page.
