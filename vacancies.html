@@ -1640,6 +1640,39 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
     transform:translateY(0) scale(.97) !important;
 }
 
+
+/* ======================================================
+   V20 - Hero logo hover animation (homepage only)
+   Safe addition - does not affect header logo
+   ====================================================== */
+
+.hero-logo{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+}
+
+.hero-logo img,
+.hero-logo svg{
+    display:block;
+    transform-origin:center center;
+    transform-box:fill-box;
+    will-change:transform,filter;
+    transition:filter .35s ease;
+}
+
+.hero-logo:hover img,
+.hero-logo:hover svg{
+    animation:optimaRotate 2.8s linear infinite;
+    filter:drop-shadow(0 10px 22px rgba(52,101,145,.22));
+}
+
+@keyframes optimaRotate{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+}
+
 </style>
 </head>
 <body>

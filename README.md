@@ -106,3 +106,7 @@ After the site works at `https://optimasolutionsintl.com`, add your custom domai
 - Adds LinkedIn using the public company URL: https://www.linkedin.com/company/108504411/
 - Includes email and Dublin location, with no telephone number.
 - Leaves the header, forms, jobs board and page content unchanged.
+
+
+## V20
+Adds a continuous hover rotation animation for the homepage hero logo. Apply class="hero-logo" to the large landing-page logo wrapper only.
