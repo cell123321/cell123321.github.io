@@ -118,3 +118,7 @@ Restores the blue mobile navigation button in the top-right corner, with white h
 
 ## V20.2
 Embeds a self-contained mobile navigation controller in every HTML page. This removes reliance on the external JavaScript file for opening and closing the mobile menu, while retaining the existing desktop navigation.
+
+
+## V20.3
+Adds the Optima Instagram profile beside LinkedIn in the footer on every page. The icon is white by default and displays the Instagram gradient on hover. All V20.2 mobile navigation fixes are retained.

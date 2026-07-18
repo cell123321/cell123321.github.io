@@ -1,2 +1,2 @@
-V20.2 - Mobile navigation functionality fix
-The mobile menu control is embedded directly in every HTML page.
+V20.3 - Instagram footer link
+Instagram added beside LinkedIn on every page.

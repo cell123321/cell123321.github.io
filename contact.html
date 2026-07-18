@@ -1760,6 +1760,63 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
   }
 }
 
+
+/* ======================================================
+   V20.3 - Instagram footer link
+   Matches the LinkedIn icon treatment.
+   ====================================================== */
+.footer-social-links{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin:10px 0 22px;
+}
+
+.footer-social-links .linkedin-link,
+.footer-social-links .instagram-link{
+  width:32px !important;
+  height:32px !important;
+  margin:0 !important;
+  padding:0 !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  font-size:0 !important;
+  line-height:0 !important;
+  color:#fff;
+  transition:transform .22s ease, color .22s ease, filter .22s ease;
+}
+
+.footer-social-links svg{
+  width:32px;
+  height:32px;
+  display:block;
+}
+
+.footer-social-links .linkedin-link:hover,
+.footer-social-links .linkedin-link:focus-visible{
+  color:#0A66C2 !important;
+  transform:translateY(-2px) scale(1.08);
+}
+
+.footer-social-links .instagram-link:hover,
+.footer-social-links .instagram-link:focus-visible{
+  transform:translateY(-2px) scale(1.08);
+  filter:drop-shadow(0 5px 12px rgba(214,41,118,.28));
+}
+
+.footer-social-links .instagram-link:hover .instagram-icon-path,
+.footer-social-links .instagram-link:focus-visible .instagram-icon-path{
+  fill:url(#instagram-gradient);
+}
+
+.footer-social-links .linkedin-link:focus-visible,
+.footer-social-links .instagram-link:focus-visible{
+  outline:2px solid #fff;
+  outline-offset:4px;
+  border-radius:4px;
+}
+
 </style>
 </head>
 <body>
@@ -1918,7 +1975,23 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
         <h3>Follow Optima</h3>
         <p>Stay connected for the latest vacancies, workforce insights and industry updates.</p>
       </div>
+      <div class="footer-social-links">
       <a class="linkedin-link" title="Follow Optima on LinkedIn" aria-label="Follow Optima on LinkedIn" href="https://www.linkedin.com/company/108504411/" target="_blank" rel="noopener noreferrer" aria-label="Follow Optima on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.94 8.5H3.56V19h3.38V8.5ZM5.25 3A1.96 1.96 0 1 0 5.25 6.92 1.96 1.96 0 0 0 5.25 3ZM20.44 12.98c0-3.16-1.69-4.63-3.94-4.63-1.82 0-2.63 1-3.08 1.7V8.5h-3.38V19h3.38v-5.2c0-1.37.26-2.7 1.96-2.7 1.67 0 1.69 1.56 1.69 2.8V19h3.37v-6.02Z"/></svg></a>
+      <a class="instagram-link" title="Follow Optima on Instagram" aria-label="Follow Optima on Instagram" href="https://www.instagram.com/optima_businesstalent/" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="instagram-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#FEDA75"/>
+              <stop offset="30%" stop-color="#FA7E1E"/>
+              <stop offset="55%" stop-color="#D62976"/>
+              <stop offset="78%" stop-color="#962FBF"/>
+              <stop offset="100%" stop-color="#4F5BD5"/>
+            </linearGradient>
+          </defs>
+          <path class="instagram-icon-path" fill="currentColor" d="M7.75 2h8.5A5.76 5.76 0 0 1 22 7.75v8.5A5.76 5.76 0 0 1 16.25 22h-8.5A5.76 5.76 0 0 1 2 16.25v-8.5A5.76 5.76 0 0 1 7.75 2Zm0 2A3.76 3.76 0 0 0 4 7.75v8.5A3.76 3.76 0 0 0 7.75 20h8.5A3.76 3.76 0 0 0 20 16.25v-8.5A3.76 3.76 0 0 0 16.25 4h-8.5Zm8.75 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/>
+        </svg>
+      </a>
+      </div>
       <a href="mailto:info@optimasolutionsintl.com">info@optimasolutionsintl.com</a>
       <span>Dublin, Ireland</span>
     </div>
