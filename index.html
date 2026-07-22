@@ -1892,9 +1892,23 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
   border-radius: 4px;
 }
 
+
+/* V20.5 - Launching Soon ribbon */
+.launch-ribbon{width:100%;background:linear-gradient(90deg,#0047ff 0%,#0d36d8 50%,#0047ff 100%);color:#fff;position:relative;z-index:1100;box-shadow:0 2px 12px rgba(0,39,145,.22)}
+.launch-ribbon__inner{min-height:42px;max-width:1440px;margin:0 auto;padding:8px 24px;display:flex;align-items:center;justify-content:center;gap:10px;text-align:center;font-size:.95rem;line-height:1.35;letter-spacing:.01em}
+.launch-ribbon__inner strong{font-weight:800;letter-spacing:.06em;white-space:nowrap}.launch-ribbon__icon{font-size:1rem;line-height:1}.launch-ribbon__message{font-weight:500}
+@media (max-width:700px){.launch-ribbon__inner{min-height:48px;padding:8px 14px;gap:7px;flex-wrap:wrap;font-size:.82rem}.launch-ribbon__message{flex-basis:100%}}
+
 </style>
 </head>
 <body>
+<div class="launch-ribbon" role="status" aria-label="Website launch notice">
+  <div class="launch-ribbon__inner">
+    <span class="launch-ribbon__icon" aria-hidden="true">🚀</span>
+    <strong>LAUNCHING SOON</strong>
+    <span class="launch-ribbon__message">Optima Talent, Workforce &amp; Business Solutions is preparing for its official launch.</span>
+  </div>
+</div>
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header" id="top">

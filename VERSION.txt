@@ -1,2 +1,1 @@
-V20.4 - Unified mobile navigation, Facebook and updated Instagram
-Removed duplicate mobile-menu event handlers and standardised every page on one shared script.
+V20.5 - Launching Soon ribbon
