@@ -10,7 +10,7 @@
  */
 
 const CONFIG = {
-  VERSION: '1.1.0',
+  VERSION: '1.2.0',
   BUSINESS_NAME: 'Optima Talent, Workforce & Business Solutions',
   BUSINESS_EMAIL: 'info@optimasolutionsintl.com',
   TIMEZONE: 'Europe/Dublin',
@@ -594,7 +594,7 @@ function iframeResponse_(payload, obj) {
     .replace(/&/g, '\\u0026');
   const targetOrigin = permittedTargetOrigin_(payload && (payload.pageOrigin || payload.page_origin));
   const html = '<!doctype html><html><head><meta charset="utf-8"></head><body>' +
-    '<script>window.parent.postMessage(' + serialised + ',' + JSON.stringify(targetOrigin) + ');<\\/script>' +
+    '<script>window.top.postMessage(' + serialised + ',' + JSON.stringify(targetOrigin) + ');<\\/script>' +
     '</body></html>';
   return HtmlService.createHtmlOutput(html)
     .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);

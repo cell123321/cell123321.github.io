@@ -5,10 +5,15 @@
   var MAX_FILE_BYTES = 5 * 1024 * 1024;
   var ALLOWED_EXTENSIONS = ['pdf', 'doc', 'docx', 'ppt', 'pptx'];
   var RESPONSE_SOURCE = 'optima-recruitment-backend';
-  var RESPONSE_TIMEOUT_MS = 60000;
+  var RESPONSE_TIMEOUT_MS = 90000;
 
   function endpointConfigured() {
     return /^https:\/\/script\.google\.com\/(?:a\/macros\/[^/]+\/)?s\/[^/]+\/exec$/.test(ENDPOINT);
+  }
+
+  function trustedResponseOrigin(origin) {
+    return origin === 'https://script.google.com' ||
+      origin === 'https://script.googleusercontent.com';
   }
 
   function collectFields(form) {
@@ -257,7 +262,7 @@
       }
 
       function onMessage(event) {
-        if (event.source !== iframe.contentWindow) return;
+        if (!trustedResponseOrigin(event.origin)) return;
         var data = event.data;
         if (!data || data.source !== RESPONSE_SOURCE || data.requestId !== payload.requestId) return;
         if (settled) return;
