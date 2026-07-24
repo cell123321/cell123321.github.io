@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Candidates | Optima</title>
-  <meta name="description" content="Submit your CV and explore professional opportunities through Optima's specialist talent network.">
-  <meta name="theme-color" content="#0a2239">
-  <meta property="og:title" content="Candidates | Optima">
-  <meta property="og:description" content="Submit your CV and explore professional opportunities through Optima's specialist talent network.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://optimasolutionsintl.com/candidates.html">
-  <link rel="canonical" href="https://optimasolutionsintl.com/candidates.html">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Candidates | Optima</title>
+<meta content="Submit your CV and explore professional opportunities through Optima's specialist talent network." name="description"/>
+<meta content="#0a2239" name="theme-color"/>
+<meta content="Candidates | Optima" property="og:title"/>
+<meta content="Submit your CV and explore professional opportunities through Optima's specialist talent network." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://optimasolutionsintl.com/candidates.html" property="og:url"/>
+<link href="https://optimasolutionsintl.com/candidates.html" rel="canonical"/>
+<link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Libre+Baskerville:wght@400;700&amp;display=swap" rel="stylesheet"/>
 <style>
 
 :root {
@@ -136,6 +137,12 @@ input,select,textarea { width:100%; padding:13px 14px; border:1px solid rgba(10,
 textarea { min-height:140px; resize:vertical; }
 input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue); box-shadow:0 0 0 3px rgba(85,122,149,.12); }
 .form-note { margin-top:12px; color:var(--muted); font-size:.82rem; }
+
+.form-status[data-state="pending"] { color:var(--muted); }
+.form-status[data-state="success"] { color:#176b43; font-weight:700; }
+.form-status[data-state="error"] { color:#a12622; font-weight:700; }
+.form-card button[disabled] { cursor:wait; opacity:.72; }
+
 .contact-list { display:grid; gap:18px; }
 .contact-item { padding:20px 0; border-bottom:1px solid var(--border); }
 .contact-item span { display:block; margin-bottom:5px; color:var(--blue); font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
@@ -1900,231 +1907,208 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
 </style>
 </head>
 <body>
-<div class="launch-ribbon" role="status" aria-label="Website launch notice">
-  <div class="launch-ribbon__inner">
-    <span class="launch-ribbon__icon" aria-hidden="true">🚀</span>
-    <strong>LAUNCHING SOON</strong>
-    <span class="launch-ribbon__message">Optima Talent, Workforce &amp; Business Solutions is preparing for its official launch.</span>
-  </div>
+<div aria-label="Website launch notice" class="launch-ribbon" role="status">
+<div class="launch-ribbon__inner">
+<span aria-hidden="true" class="launch-ribbon__icon">🚀</span>
+<strong>LAUNCHING SOON</strong>
+<span class="launch-ribbon__message">Optima Talent, Workforce &amp; Business Solutions is preparing for its official launch.</span>
+</div>
 </div>
 <a class="skip-link" href="#main">Skip to content</a>
-
 <header class="site-header" id="top">
-  <div class="container nav-wrap">
-    <a class="brand" href="index.html" aria-label="Optima home">
-      <span class="brand-mark" aria-hidden="true">
-        <span class="dot dot-top"></span><span class="dot dot-right"></span>
-        <span class="dot dot-bottom"></span><span class="dot dot-left"></span>
-      </span>
-      <span class="brand-text">
-        <strong>OPTIMA</strong>
-        <small>Talent, Workforce &amp; Business Solutions</small>
-      </span>
-    </a>
-
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
-      <span></span><span></span><span></span><span class="sr-only">Open menu</span>
-    </button>
-
-    <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation">
-      <a href="services.html">What We Do</a>
-
-      <div class="nav-dropdown">
-        <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+<div class="container nav-wrap">
+<a aria-label="Optima home" class="brand" href="index.html">
+<span aria-hidden="true" class="brand-mark">
+<span class="dot dot-top"></span><span class="dot dot-right"></span>
+<span class="dot dot-bottom"></span><span class="dot dot-left"></span>
+</span>
+<span class="brand-text">
+<strong>OPTIMA</strong>
+<small>Talent, Workforce &amp; Business Solutions</small>
+</span>
+</a>
+<button aria-controls="primary-nav" aria-expanded="false" class="menu-toggle" type="button">
+<span></span><span></span><span></span><span class="sr-only">Open menu</span>
+</button>
+<nav aria-label="Primary navigation" class="primary-nav" id="primary-nav">
+<a href="services.html">What We Do</a>
+<div class="nav-dropdown">
+<button aria-expanded="false" class="nav-dropdown-toggle" type="button">
           For Employers
-          <span class="dropdown-chevron" aria-hidden="true">▾</span>
-        </button>
-        <div class="nav-dropdown-menu">
-          <a href="vacancies.html">Submit a Vacancy</a>
-          <a href="services.html#executive-search">Executive Search</a>
-          <a href="services.html#partnership">Recruitment Partnerships</a>
-          <a href="services.html#relocation">International Recruitment</a>
-          <a href="services.html#business-consulting">Business Consulting</a>
-        </div>
-      </div>
-
-      <div class="nav-dropdown">
-        <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+          <span aria-hidden="true" class="dropdown-chevron">▾</span>
+</button>
+<div class="nav-dropdown-menu">
+<a href="vacancies.html">Submit a Vacancy</a>
+<a href="services.html#executive-search">Executive Search</a>
+<a href="services.html#partnership">Recruitment Partnerships</a>
+<a href="services.html#relocation">International Recruitment</a>
+<a href="services.html#business-consulting">Business Consulting</a>
+</div>
+</div>
+<div class="nav-dropdown">
+<button aria-expanded="false" class="nav-dropdown-toggle" type="button">
           Candidates
-          <span class="dropdown-chevron" aria-hidden="true">▾</span>
-        </button>
-        <div class="nav-dropdown-menu">
-          <a href="candidates.html#submit-cv">Upload Your CV</a>
-          <a href="jobs.html">Browse Jobs</a>
-          <a href="services.html#relocation">Relocation Support</a>
-          <a href="candidates.html#candidate-resources">Candidate Resources</a>
-        </div>
-      </div>
-
-      <a href="jobs.html">Jobs</a>
-      <a href="industries.html">Industries</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a class="nav-cta" href="consultation.html">Request a Consultation</a>
-    </nav>
-  </div>
+          <span aria-hidden="true" class="dropdown-chevron">▾</span>
+</button>
+<div class="nav-dropdown-menu">
+<a href="candidates.html#submit-cv">Upload Your CV</a>
+<a href="jobs.html">Browse Jobs</a>
+<a href="services.html#relocation">Relocation Support</a>
+<a href="candidates.html#candidate-resources">Candidate Resources</a>
+</div>
+</div>
+<a href="jobs.html">Jobs</a>
+<a href="industries.html">Industries</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<a class="nav-cta" href="consultation.html">Request a Consultation</a>
+</nav>
+</div>
 </header>
-
-
 <main id="main">
 <section class="page-hero"><div class="container"><span class="eyebrow">For Candidates</span><h1>Your career. Your future.</h1><p class="lead">Whether you are looking for your next opportunity in Ireland or considering an international move, Optima supports professionals throughout the recruitment and relocation journey.</p></div></section>
-<section id="candidate-resources" class="section section-white"><div class="container grid-2"><div><h2>A considered candidate experience.</h2><p>Every profile is reviewed with discretion. We will contact you when an appropriate opportunity matches your experience and career objectives.</p><p>For international appointments, we can also support professional registration, relocation planning, practical settlement guidance and onboarding.</p></div><div class="quote-panel"><h3>What to expect</h3><p>Clear communication, realistic feedback and a respectful process focused on long-term fit rather than volume.</p></div></div></section>
+<section class="section section-white" id="candidate-resources"><div class="container grid-2"><div><h2>A considered candidate experience.</h2><p>Every profile is reviewed with discretion. We will contact you when an appropriate opportunity matches your experience and career objectives.</p><p>For international appointments, we can also support professional registration, relocation planning, practical settlement guidance and onboarding.</p></div><div class="quote-panel"><h3>What to expect</h3><p>Clear communication, realistic feedback and a respectful process focused on long-term fit rather than volume.</p></div></div></section>
 <section class="section" id="submit-cv"><div class="container grid-2"><div><span class="eyebrow">Candidate Registration</span><h2>Tell us what you want to do next.</h2><p class="lead">Share the type of role, sector, location and working arrangement you are seeking, then upload your CV for consideration for current and future opportunities.</p></div>
-<form class="form-card" data-demo-form>
+<form class="form-card" data-form-type="candidate" data-optima-form=""><div aria-hidden="true" class="optima-honeypot" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;"><label for="candidate-website">Website</label><input autocomplete="off" id="candidate-website" name="website" tabindex="-1" type="text"/></div>
 <div class="form-grid">
-<div class="field"><label for="c-name">Full name</label><input id="c-name" required></div>
-<div class="field"><label for="c-email">Email</label><input id="c-email" type="email" required></div>
-<div class="field"><label for="c-phone">Telephone</label><input id="c-phone" type="tel"></div>
-<div class="field"><label for="c-industry">Industry</label><select id="c-industry"><option>Healthcare</option><option>Construction & Engineering</option><option>Financial Services</option><option>Pharmaceutical & Life Sciences</option><option>Other</option></select></div>
-<div class="field field-full"><label for="c-heading">What would you like to do next?</label><input id="c-heading" placeholder="Example: Senior healthcare operations role in Ireland"></div>
-<div class="field"><label for="c-location">Preferred location</label><input id="c-location"></div>
-<div class="field"><label for="c-work">Preferred arrangement</label><select id="c-work"><option>Permanent</option><option>Contract</option><option>Interim</option><option>Remote or hybrid</option><option>Open to options</option></select></div>
-<div class="field field-full"><label for="c-linkedin">LinkedIn profile</label><input id="c-linkedin" type="url"></div>
-<div class="field field-full"><label for="c-message">Tell us about your experience and career objectives</label><textarea id="c-message"></textarea></div>
-<div class="field field-full check-row"><input id="c-relocation" type="checkbox"><label for="c-relocation">I would like information or support regarding international relocation.</label></div>
-<div class="field field-full"><label for="c-cv">Upload CV</label><input id="c-cv" type="file" accept=".pdf,.doc,.docx"></div>
-</div>
-
-<div class="field field-full consent-field">
-  <label class="consent-label">
-    <input name="privacy-consent" type="checkbox" required>
-    <span>I confirm that I have read the <a href="privacy.html" target="_blank" rel="noopener">Privacy Notice</a> and understand how Optima Solutions International Limited will process the personal information submitted through this form.</span>
-  </label>
-</div>
-
-<div class="field field-full consent-field">
-  <label class="consent-label">
-    <input name="candidate-confirmation" type="checkbox" required>
-    <span>I confirm that the information and documents I submit are accurate to the best of my knowledge and that I am entitled to provide them for recruitment purposes.</span>
-  </label>
+<div class="field"><label for="c-name">Full name</label><input id="c-name" name="full_name" required=""/></div>
+<div class="field"><label for="c-email">Email</label><input id="c-email" name="email" required="" type="email"/></div>
+<div class="field"><label for="c-phone">Telephone</label><input id="c-phone" name="telephone" type="tel"/></div>
+<div class="field"><label for="c-industry">Industry</label><select id="c-industry" name="industry"><option>Healthcare</option><option>Construction &amp; Engineering</option><option>Financial Services</option><option>Pharmaceutical &amp; Life Sciences</option><option>Other</option></select></div>
+<div class="field field-full"><label for="c-heading">What would you like to do next?</label><input id="c-heading" name="career_goal" placeholder="Example: Senior healthcare operations role in Ireland"/></div>
+<div class="field"><label for="c-location">Preferred location</label><input id="c-location" name="preferred_location"/></div>
+<div class="field"><label for="c-work">Preferred arrangement</label><select id="c-work" name="preferred_arrangement"><option>Permanent</option><option>Contract</option><option>Interim</option><option>Remote or hybrid</option><option>Open to options</option></select></div>
+<div class="field field-full"><label for="c-linkedin">LinkedIn profile</label><input id="c-linkedin" name="linkedin_profile" type="url"/></div>
+<div class="field field-full"><label for="c-message">Tell us about your experience and career objectives</label><textarea id="c-message" name="experience_and_objectives"></textarea></div>
+<div class="field field-full check-row"><input id="c-relocation" name="relocation_support" type="checkbox"/><label for="c-relocation">I would like information or support regarding international relocation.</label></div>
+<div class="field field-full"><label for="c-cv">Upload CV</label><input accept=".pdf,.doc,.docx" id="c-cv" name="cv" type="file"/></div>
 </div>
 <div class="field field-full consent-field">
-  <label class="consent-label">
-    <input name="future-opportunities" type="checkbox">
-    <span>I would like Optima Solutions International Limited to retain my profile and contact me about relevant future opportunities. This is optional and may be withdrawn at any time.</span>
-  </label>
+<label class="consent-label">
+<input name="privacy-consent" required="" type="checkbox"/>
+<span>I confirm that I have read the <a href="privacy.html" rel="noopener" target="_blank">Privacy Notice</a> and understand how Optima Solutions International Limited will process the personal information submitted through this form.</span>
+</label>
 </div>
-
+<div class="field field-full consent-field">
+<label class="consent-label">
+<input name="candidate-confirmation" required="" type="checkbox"/>
+<span>I confirm that the information and documents I submit are accurate to the best of my knowledge and that I am entitled to provide them for recruitment purposes.</span>
+</label>
+</div>
+<div class="field field-full consent-field">
+<label class="consent-label">
+<input name="future-opportunities" type="checkbox"/>
+<span>I would like Optima Solutions International Limited to retain my profile and contact me about relevant future opportunities. This is optional and may be withdrawn at any time.</span>
+</label>
+</div>
 <button class="btn" type="submit">Submit Your CV</button>
-<p class="form-status form-note"></p>
+<p aria-live="polite" class="form-status form-note"></p>
 </form></div></section>
-
 <section class="section section-stone" id="relocation-request">
-  <div class="container grid-2">
-    <div><span class="eyebrow">Relocation Assistance</span><h2>Request practical support with an international move.</h2><p class="lead">Candidates may request assistance with professional registration, relocation planning, accommodation and area guidance, arrival preparation, family settlement and onboarding.</p></div>
-    <div><a class="btn btn-gold" href="contact.html">Request Relocation Support</a></div>
-  </div>
+<div class="container grid-2">
+<div><span class="eyebrow">Relocation Assistance</span><h2>Request practical support with an international move.</h2><p class="lead">Candidates may request assistance with professional registration, relocation planning, accommodation and area guidance, arrival preparation, family settlement and onboarding.</p></div>
+<div><a class="btn btn-gold" href="contact.html">Request Relocation Support</a></div>
+</div>
 </section>
 </main>
-
-
-<section class="trust-band" aria-labelledby="trust-band-title">
-  <div class="container trust-band-inner">
-    <div class="trust-band-copy">
-      <span class="eyebrow">Optima</span>
-      <h2 id="trust-band-title">Recruitment. Workforce. Business.</h2>
-      <p class="trust-band-lead">Three disciplines. One strategic partner.</p>
-    </div>
-    <div class="trust-band-points" role="list">
-      <span role="listitem">Recruitment &amp; Executive Search</span>
-      <span role="listitem">Workforce Solutions &amp; Planning</span>
-      <span role="listitem">Business Consulting &amp; Growth</span>
-      <span role="listitem">International Talent &amp; Relocation</span>
-      <span role="listitem">HR, Compliance &amp; Organisational Support</span>
-    </div>
-  </div>
+<section aria-labelledby="trust-band-title" class="trust-band">
+<div class="container trust-band-inner">
+<div class="trust-band-copy">
+<span class="eyebrow">Optima</span>
+<h2 id="trust-band-title">Recruitment. Workforce. Business.</h2>
+<p class="trust-band-lead">Three disciplines. One strategic partner.</p>
+</div>
+<div class="trust-band-points" role="list">
+<span role="listitem">Recruitment &amp; Executive Search</span>
+<span role="listitem">Workforce Solutions &amp; Planning</span>
+<span role="listitem">Business Consulting &amp; Growth</span>
+<span role="listitem">International Talent &amp; Relocation</span>
+<span role="listitem">HR, Compliance &amp; Organisational Support</span>
+</div>
+</div>
 </section>
-
-
 <footer class="site-footer site-footer-premium">
-  <div class="container footer-connect">
-    <div class="footer-connect-copy">
-      <span class="eyebrow footer-eyebrow">Let's connect</span>
-      <h2>Build stronger teams and better businesses.</h2>
-      <p>Partner with Optima for recruitment, workforce and business consultancy solutions across Ireland and internationally.</p>
-    </div>
-
-    <div class="footer-link-groups">
-      <div>
-        <h3>Services</h3>
-        <a href="services.html#talent-acquisition">Talent Acquisition</a>
-        <a href="services.html#executive-search">Executive Search</a>
-        <a href="services.html#partnership">Recruitment Partnerships</a>
-        <a href="services.html#relocation">International Recruitment</a>
-        <a href="services.html#business-consulting">Business Consulting</a>
-      </div>
-
-      <div>
-        <h3>For Employers</h3>
-        <a href="vacancies.html">Submit a Vacancy</a>
-        <a href="services.html">Workforce Solutions</a>
-        <a href="services.html#business-consulting">HR &amp; Compliance</a>
-        <a href="consultation.html">Request a Consultation</a>
-        <a href="industries.html">Industries</a>
-      </div>
-
-      <div>
-        <h3>Candidates</h3>
-        <a href="jobs.html">Browse Jobs</a>
-        <a href="candidates.html#submit-cv">Upload Your CV</a>
-        <a href="candidates.html#candidate-resources">Candidate Resources</a>
-        <a href="services.html#relocation">Relocation Support</a>
-      </div>
-
-      <div>
-        <h3>Company</h3>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="cookies.html">Cookie Policy</a>
-        <a href="terms.html">Terms of Use</a>
-      </div>
-    </div>
-
-    <div class="footer-social-panel">
-      <div>
-        <h3>Follow Optima</h3>
-        <p>Stay connected for the latest vacancies, workforce insights and industry updates.</p>
-      </div>
-      <div class="footer-social-links">
-      <a class="linkedin-link" title="Follow Optima on LinkedIn" aria-label="Follow Optima on LinkedIn" href="https://www.linkedin.com/company/108504411/" target="_blank" rel="noopener noreferrer" aria-label="Follow Optima on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.94 8.5H3.56V19h3.38V8.5ZM5.25 3A1.96 1.96 0 1 0 5.25 6.92 1.96 1.96 0 0 0 5.25 3ZM20.44 12.98c0-3.16-1.69-4.63-3.94-4.63-1.82 0-2.63 1-3.08 1.7V8.5h-3.38V19h3.38v-5.2c0-1.37.26-2.7 1.96-2.7 1.67 0 1.69 1.56 1.69 2.8V19h3.37v-6.02Z"/></svg></a>
-      <a class="instagram-link" title="Follow Optima on Instagram" aria-label="Follow Optima on Instagram" href="https://www.instagram.com/optima_businesstalent?igsh=N3Nndnp1enhmMXI1&utm_source=qr" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <defs>
-            <linearGradient id="instagram-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#FEDA75"/>
-              <stop offset="30%" stop-color="#FA7E1E"/>
-              <stop offset="55%" stop-color="#D62976"/>
-              <stop offset="78%" stop-color="#962FBF"/>
-              <stop offset="100%" stop-color="#4F5BD5"/>
-            </linearGradient>
-          </defs>
-          <path class="instagram-icon-path" fill="currentColor" d="M7.75 2h8.5A5.76 5.76 0 0 1 22 7.75v8.5A5.76 5.76 0 0 1 16.25 22h-8.5A5.76 5.76 0 0 1 2 16.25v-8.5A5.76 5.76 0 0 1 7.75 2Zm0 2A3.76 3.76 0 0 0 4 7.75v8.5A3.76 3.76 0 0 0 7.75 20h8.5A3.76 3.76 0 0 0 20 16.25v-8.5A3.76 3.76 0 0 0 16.25 4h-8.5Zm8.75 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/>
-        </svg>
-      </a>
-      <a class="facebook-link" title="Follow Optima on Facebook" aria-label="Follow Optima on Facebook" href="https://www.facebook.com/share/19LsGL8zAk/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path fill="currentColor" d="M13.5 22v-8h2.7l.4-3.1h-3.1V8.9c0-.9.3-1.5 1.6-1.5h1.7V4.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V14h2.8v8h3.4Z"/>
-        </svg>
-      </a>
-      </div>
-      <a href="mailto:info@optimasolutionsintl.com">info@optimasolutionsintl.com</a>
-      <span>Suite 11360, 26/27 Upper Pembroke Street, Dublin 2, D02 X361, Ireland</span>
-    </div>
-  </div>
-
-  <div class="footer-legal">
-    <div class="container footer-legal-inner">
-      <p>© 2026 Optima Solutions International Limited.<br>Registered Address: Suite 11360, 26/27 Upper Pembroke Street, Dublin 2, D02 X361, Ireland. All rights reserved.</p>
-      <div>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="cookies.html">Cookie Policy</a>
-        <a href="terms.html">Terms of Use</a>
-      </div>
-    </div>
-  </div>
+<div class="container footer-connect">
+<div class="footer-connect-copy">
+<span class="eyebrow footer-eyebrow">Let's connect</span>
+<h2>Build stronger teams and better businesses.</h2>
+<p>Partner with Optima for recruitment, workforce and business consultancy solutions across Ireland and internationally.</p>
+</div>
+<div class="footer-link-groups">
+<div>
+<h3>Services</h3>
+<a href="services.html#talent-acquisition">Talent Acquisition</a>
+<a href="services.html#executive-search">Executive Search</a>
+<a href="services.html#partnership">Recruitment Partnerships</a>
+<a href="services.html#relocation">International Recruitment</a>
+<a href="services.html#business-consulting">Business Consulting</a>
+</div>
+<div>
+<h3>For Employers</h3>
+<a href="vacancies.html">Submit a Vacancy</a>
+<a href="services.html">Workforce Solutions</a>
+<a href="services.html#business-consulting">HR &amp; Compliance</a>
+<a href="consultation.html">Request a Consultation</a>
+<a href="industries.html">Industries</a>
+</div>
+<div>
+<h3>Candidates</h3>
+<a href="jobs.html">Browse Jobs</a>
+<a href="candidates.html#submit-cv">Upload Your CV</a>
+<a href="candidates.html#candidate-resources">Candidate Resources</a>
+<a href="services.html#relocation">Relocation Support</a>
+</div>
+<div>
+<h3>Company</h3>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="cookies.html">Cookie Policy</a>
+<a href="terms.html">Terms of Use</a>
+</div>
+</div>
+<div class="footer-social-panel">
+<div>
+<h3>Follow Optima</h3>
+<p>Stay connected for the latest vacancies, workforce insights and industry updates.</p>
+</div>
+<div class="footer-social-links">
+<a aria-label="Follow Optima on LinkedIn" class="linkedin-link" href="https://www.linkedin.com/company/108504411/" rel="noopener noreferrer" target="_blank" title="Follow Optima on LinkedIn"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M6.94 8.5H3.56V19h3.38V8.5ZM5.25 3A1.96 1.96 0 1 0 5.25 6.92 1.96 1.96 0 0 0 5.25 3ZM20.44 12.98c0-3.16-1.69-4.63-3.94-4.63-1.82 0-2.63 1-3.08 1.7V8.5h-3.38V19h3.38v-5.2c0-1.37.26-2.7 1.96-2.7 1.67 0 1.69 1.56 1.69 2.8V19h3.37v-6.02Z" fill="currentColor"></path></svg></a>
+<a aria-label="Follow Optima on Instagram" class="instagram-link" href="https://www.instagram.com/optima_businesstalent?igsh=N3Nndnp1enhmMXI1&amp;utm_source=qr" rel="noopener noreferrer" target="_blank" title="Follow Optima on Instagram">
+<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24">
+<defs>
+<lineargradient id="instagram-gradient" x1="0%" x2="100%" y1="100%" y2="0%">
+<stop offset="0%" stop-color="#FEDA75"></stop>
+<stop offset="30%" stop-color="#FA7E1E"></stop>
+<stop offset="55%" stop-color="#D62976"></stop>
+<stop offset="78%" stop-color="#962FBF"></stop>
+<stop offset="100%" stop-color="#4F5BD5"></stop>
+</lineargradient>
+</defs>
+<path class="instagram-icon-path" d="M7.75 2h8.5A5.76 5.76 0 0 1 22 7.75v8.5A5.76 5.76 0 0 1 16.25 22h-8.5A5.76 5.76 0 0 1 2 16.25v-8.5A5.76 5.76 0 0 1 7.75 2Zm0 2A3.76 3.76 0 0 0 4 7.75v8.5A3.76 3.76 0 0 0 7.75 20h8.5A3.76 3.76 0 0 0 20 16.25v-8.5A3.76 3.76 0 0 0 16.25 4h-8.5Zm8.75 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" fill="currentColor"></path>
+</svg>
+</a>
+<a aria-label="Follow Optima on Facebook" class="facebook-link" href="https://www.facebook.com/share/19LsGL8zAk/?mibextid=wwXIfr" rel="noopener noreferrer" target="_blank" title="Follow Optima on Facebook">
+<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24">
+<path d="M13.5 22v-8h2.7l.4-3.1h-3.1V8.9c0-.9.3-1.5 1.6-1.5h1.7V4.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V14h2.8v8h3.4Z" fill="currentColor"></path>
+</svg>
+</a>
+</div>
+<a href="mailto:info@optimasolutionsintl.com">info@optimasolutionsintl.com</a>
+<span>Suite 11360, 26/27 Upper Pembroke Street, Dublin 2, D02 X361, Ireland</span>
+</div>
+</div>
+<div class="footer-legal">
+<div class="container footer-legal-inner">
+<p>© 2026 Optima Solutions International Limited.<br/>Registered Address: Suite 11360, 26/27 Upper Pembroke Street, Dublin 2, D02 X361, Ireland. All rights reserved.</p>
+<div>
+<a href="privacy.html">Privacy Policy</a>
+<a href="cookies.html">Cookie Policy</a>
+<a href="terms.html">Terms of Use</a>
+</div>
+</div>
+</div>
 </footer>
-
-<script defer src="js/script.js?v=20.4"></script>
-</body>
+<script defer="" src="js/script.js?v=20.4"></script>
+<script defer src="js/forms-backend.js?v=20.9"></script></body>
 </html>

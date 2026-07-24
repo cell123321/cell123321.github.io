@@ -129,3 +129,8 @@ Adds the Optima Instagram profile beside LinkedIn in the footer on every page. T
 - Ensures the hamburger menu works consistently across all HTML pages.
 - Adds Facebook beside LinkedIn and Instagram.
 - Updates Instagram to the supplied QR/share URL.
+
+
+## V20.9 backend connection
+
+The public website forms are connected to the production Google Apps Script web-app endpoint. Update the Apps Script deployment to v1.1 before publishing this website release. See `BACKEND_UPDATE_V1.1.md`.
