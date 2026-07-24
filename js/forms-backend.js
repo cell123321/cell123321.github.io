@@ -4,16 +4,12 @@
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycbzF1thaAD1eG3YBwHFGqOl8fcgrvi_qHdfV3c6LGpmy32kiBegNg-yBzB1le_pz_mTA/exec';
   var MAX_FILE_BYTES = 5 * 1024 * 1024;
   var ALLOWED_EXTENSIONS = ['pdf', 'doc', 'docx', 'ppt', 'pptx'];
-  var RESPONSE_SOURCE = 'optima-recruitment-backend';
-  var RESPONSE_TIMEOUT_MS = 90000;
+  var CONFIRMATION_TIMEOUT_MS = 120000;
+  var POLL_INTERVAL_MS = 1500;
+  var POLL_REQUEST_TIMEOUT_MS = 12000;
 
   function endpointConfigured() {
-    return /^https:\/\/script\.google\.com\/(?:a\/macros\/[^/]+\/)?s\/[^/]+\/exec$/.test(ENDPOINT);
-  }
-
-  function trustedResponseOrigin(origin) {
-    return origin === 'https://script.google.com' ||
-      origin === 'https://script.googleusercontent.com';
+    return /^https:\/\/script\.google\.com\/(?:a\/macros\/[^/]+\/|macros\/)s\/[^/]+\/exec$/.test(ENDPOINT);
   }
 
   function collectFields(form) {
@@ -22,6 +18,7 @@
       if (!field || field.disabled || field.type === 'file' || field.type === 'submit') return;
       var name = field.name || field.id || '';
       if (!name) return;
+
       if (field.type === 'checkbox') {
         data[name] = field.checked;
       } else if (field.type === 'radio') {
@@ -46,7 +43,9 @@
   }
 
   function combineLines(lines) {
-    return lines.filter(function (line) { return String(line || '').trim(); }).join('\n');
+    return lines.filter(function (line) {
+      return String(line || '').trim();
+    }).join('\n');
   }
 
   function splitFullName(fullName) {
@@ -59,22 +58,32 @@
     };
   }
 
-  function requestId() {
+  function createRequestId() {
     if (window.crypto && typeof window.crypto.randomUUID === 'function') {
       return window.crypto.randomUUID();
     }
-    return 'optima-' + Date.now() + '-' + Math.random().toString(36).slice(2);
+    return 'optima-' + Date.now() + '-' + Math.random().toString(36).slice(2, 14);
   }
 
-  function readFile(file) {
+  function readFile(file, allowedExtensions) {
     return new Promise(function (resolve, reject) {
-      if (!file) return resolve(null);
-      var extension = (file.name.split('.').pop() || '').toLowerCase();
-      if (ALLOWED_EXTENSIONS.indexOf(extension) === -1) {
-        return reject(new Error('Please upload a PDF, DOC, DOCX, PPT or PPTX file.'));
+      if (!file) {
+        resolve(null);
+        return;
       }
+
+      var extension = (file.name.split('.').pop() || '').toLowerCase();
+      var permitted = allowedExtensions || ALLOWED_EXTENSIONS;
+      if (permitted.indexOf(extension) === -1) {
+        reject(new Error(permitted.indexOf('ppt') >= 0
+          ? 'Please upload a PDF, DOC, DOCX, PPT or PPTX file.'
+          : 'Please upload a PDF, DOC or DOCX file.'));
+        return;
+      }
+
       if (file.size > MAX_FILE_BYTES) {
-        return reject(new Error('The uploaded file must be 5 MB or smaller.'));
+        reject(new Error('The uploaded file must be 5 MB or smaller.'));
+        return;
       }
 
       var reader = new FileReader();
@@ -102,8 +111,7 @@
       pageUrl: window.location.href,
       pageOrigin: window.location.origin,
       source: 'Optima website — ' + type + ' form',
-      responseMode: 'iframe',
-      requestId: requestId(),
+      requestId: createRequestId(),
       website: value(fields, 'website')
     };
 
@@ -147,6 +155,7 @@
       payload.startDate = value(fields, 'specific_start_date') || value(fields, 'start_date_preference');
       payload.workplace = value(fields, 'workplace');
       payload.hiringUrgency = value(fields, 'hiring_urgency');
+      payload.clientAuthority = checked(fields, 'client-authority');
       payload.notes = combineLines([
         value(fields, 'support_required') ? 'Support required: ' + value(fields, 'support_required') : '',
         value(fields, 'brief') ? 'Vacancy brief:\n' + value(fields, 'brief') : '',
@@ -155,6 +164,7 @@
         'Authority to submit confirmed: ' + yesNo(checked(fields, 'client-authority'))
       ]);
       payload.gdprConsent = checked(fields, 'privacy-consent');
+
       if (file) {
         payload.jobDescriptionBase64 = file.base64;
         payload.jobDescriptionName = file.name;
@@ -174,7 +184,9 @@
       payload.country = '';
       payload.profession = value(fields, 'industry');
       payload.currentJobTitle = value(fields, 'career_goal');
+      payload.roleTitle = String(form.dataset.jobTitle || '').trim();
       payload.linkedin = value(fields, 'linkedin_profile');
+      payload.candidateConfirmation = checked(fields, 'candidate-confirmation');
       payload.marketingConsent = checked(fields, 'future-opportunities');
       payload.notes = combineLines([
         value(fields, 'preferred_arrangement') ? 'Preferred arrangement: ' + value(fields, 'preferred_arrangement') : '',
@@ -185,6 +197,7 @@
         'Future opportunities consent: ' + yesNo(checked(fields, 'future-opportunities'))
       ]);
       payload.gdprConsent = checked(fields, 'privacy-consent');
+
       if (file) {
         payload.cvBase64 = file.base64;
         payload.cvName = file.name;
@@ -199,96 +212,133 @@
   function setStatus(form, message, state) {
     var status = form.querySelector('.form-status');
     if (!status) return;
+
     status.textContent = message;
     status.dataset.state = state || '';
     status.setAttribute('role', state === 'error' ? 'alert' : 'status');
+
     if (state === 'success' || state === 'error') {
       status.setAttribute('tabindex', '-1');
-      status.focus({ preventScroll: true });
+      try {
+        status.focus({ preventScroll: true });
+      } catch (error) {
+        status.focus();
+      }
     }
   }
 
   function setSubmitting(form, submitting) {
     var button = form.querySelector('button[type="submit"]');
     if (!button) return;
+
     if (!button.dataset.originalText) button.dataset.originalText = button.textContent;
     button.disabled = submitting;
     button.setAttribute('aria-busy', submitting ? 'true' : 'false');
     button.textContent = submitting ? 'Submitting…' : button.dataset.originalText;
   }
 
-  function addHiddenField(form, name, valueToAdd) {
-    var element;
-    if (/Base64$/.test(name)) {
-      element = document.createElement('textarea');
-    } else {
-      element = document.createElement('input');
-      element.type = 'hidden';
+  function submitPayload(payload) {
+    if (!window.fetch) {
+      return Promise.reject(new Error('Your browser cannot use the secure submission service. Please update your browser or contact Optima directly.'));
     }
-    element.name = name;
-    element.value = valueToAdd == null ? '' : String(valueToAdd);
-    form.appendChild(element);
+
+    return window.fetch(ENDPOINT, {
+      method: 'POST',
+      mode: 'no-cors',
+      credentials: 'omit',
+      cache: 'no-store',
+      redirect: 'follow',
+      headers: {
+        'Content-Type': 'text/plain;charset=UTF-8'
+      },
+      body: JSON.stringify(payload)
+    });
   }
 
-  function submitViaIframe(payload) {
+  function validStatusResponse(data, requestId) {
+    return data && data.requestId === requestId &&
+      (data.status === 'pending' || data.status === 'processing' || data.status === 'complete');
+  }
+
+  function requestStatus(requestId, attempt) {
     return new Promise(function (resolve, reject) {
-      var iframe = document.createElement('iframe');
-      var frameName = 'optima-submit-' + payload.requestId.replace(/[^a-zA-Z0-9_-]/g, '');
-      iframe.name = frameName;
-      iframe.title = 'Secure form submission';
-      iframe.style.display = 'none';
-
-      var postForm = document.createElement('form');
-      postForm.method = 'POST';
-      postForm.action = ENDPOINT;
-      postForm.target = frameName;
-      postForm.acceptCharset = 'UTF-8';
-      postForm.style.display = 'none';
-
-      Object.keys(payload).forEach(function (key) {
-        if (payload[key] !== undefined && payload[key] !== null) addHiddenField(postForm, key, payload[key]);
-      });
-
-      var settled = false;
+      var callbackName = '__optimaStatus_' + requestId.replace(/[^a-zA-Z0-9_$]/g, '') + '_' + attempt;
+      var script = document.createElement('script');
+      var completed = false;
       var timeoutId;
 
       function cleanup() {
-        window.removeEventListener('message', onMessage);
         if (timeoutId) window.clearTimeout(timeoutId);
-        window.setTimeout(function () {
-          if (postForm.parentNode) postForm.parentNode.removeChild(postForm);
-          if (iframe.parentNode) iframe.parentNode.removeChild(iframe);
-        }, 0);
+        try {
+          delete window[callbackName];
+        } catch (error) {
+          window[callbackName] = undefined;
+        }
+        if (script.parentNode) script.parentNode.removeChild(script);
       }
 
-      function onMessage(event) {
-        if (!trustedResponseOrigin(event.origin)) return;
-        var data = event.data;
-        if (!data || data.source !== RESPONSE_SOURCE || data.requestId !== payload.requestId) return;
-        if (settled) return;
-        settled = true;
+      window[callbackName] = function (data) {
+        if (completed) return;
+        completed = true;
         cleanup();
-        if (data.success === true) resolve(data);
-        else reject(new Error(data.message || 'The submission could not be completed.'));
-      }
+        if (!validStatusResponse(data, requestId)) {
+          reject(new Error('The backend returned an invalid confirmation response.'));
+          return;
+        }
+        resolve(data);
+      };
 
-      window.addEventListener('message', onMessage);
-      document.body.appendChild(iframe);
-      document.body.appendChild(postForm);
+      script.onerror = function () {
+        if (completed) return;
+        completed = true;
+        cleanup();
+        reject(new Error('The confirmation service could not be reached.'));
+      };
 
       timeoutId = window.setTimeout(function () {
-        if (settled) return;
-        settled = true;
+        if (completed) return;
+        completed = true;
         cleanup();
-        reject(new Error('The submission timed out. Please check your connection and try again.'));
-      }, RESPONSE_TIMEOUT_MS);
+        reject(new Error('The confirmation request timed out.'));
+      }, POLL_REQUEST_TIMEOUT_MS);
 
-      postForm.submit();
+      script.async = true;
+      script.src = ENDPOINT +
+        '?action=status' +
+        '&requestId=' + encodeURIComponent(requestId) +
+        '&callback=' + encodeURIComponent(callbackName) +
+        '&_=' + Date.now();
+      document.head.appendChild(script);
     });
+  }
+
+  async function waitForConfirmation(requestId) {
+    var started = Date.now();
+    var attempt = 0;
+    var lastError = null;
+
+    while (Date.now() - started < CONFIRMATION_TIMEOUT_MS) {
+      attempt += 1;
+      try {
+        var status = await requestStatus(requestId, attempt);
+        if (status.status === 'complete') return status;
+      } catch (error) {
+        lastError = error;
+      }
+
+      await new Promise(function (resolve) {
+        window.setTimeout(resolve, POLL_INTERVAL_MS);
+      });
+    }
+
+    throw new Error(lastError && lastError.message
+      ? 'The submission was sent, but confirmation was delayed. Please do not submit it repeatedly. Contact Optima if you do not receive a response.'
+      : 'The submission was sent, but confirmation was delayed. Please do not submit it repeatedly. Contact Optima if you do not receive a response.');
   }
 
   async function submitForm(form) {
     if (!form.reportValidity()) return;
+
     if (!endpointConfigured()) {
       setStatus(form, 'This form is awaiting secure backend activation. Please contact Optima directly.', 'error');
       return;
@@ -306,9 +356,22 @@
 
     try {
       var fileInput = form.querySelector('input[type="file"]');
-      var file = fileInput && fileInput.files && fileInput.files[0] ? await readFile(fileInput.files[0]) : null;
+      var fileExtensions = String(form.dataset.formType || '').toLowerCase() === 'candidate'
+        ? ['pdf', 'doc', 'docx']
+        : ALLOWED_EXTENSIONS;
+      var file = fileInput && fileInput.files && fileInput.files[0]
+        ? await readFile(fileInput.files[0], fileExtensions)
+        : null;
       var payload = buildPayload(form, fields, file);
-      var result = await submitViaIframe(payload);
+
+      await submitPayload(payload);
+      setStatus(form, 'Submission sent. Confirming receipt…', 'pending');
+
+      var result = await waitForConfirmation(payload.requestId);
+      if (result.success !== true) {
+        throw new Error(result.message || 'The submission could not be completed.');
+      }
+
       form.reset();
       var reference = result.id ? ' Reference: ' + result.id + '.' : '';
       setStatus(form, (result.message || 'Thank you. Your submission has been received securely.') + reference, 'success');
@@ -320,12 +383,33 @@
     }
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
+  function applyJobContext(form) {
+    if (String(form.dataset.formType || '').toLowerCase() !== 'candidate') return;
+    var jobTitle = new URLSearchParams(window.location.search).get('job');
+    if (!jobTitle) return;
+
+    form.dataset.jobTitle = jobTitle;
+    var careerGoal = form.querySelector('[name="career_goal"]');
+    if (careerGoal && !String(careerGoal.value || '').trim()) {
+      careerGoal.value = jobTitle;
+    }
+  }
+
+  function initialiseForms() {
     document.querySelectorAll('form[data-optima-form]').forEach(function (form) {
+      if (form.dataset.optimaInitialised === 'true') return;
+      form.dataset.optimaInitialised = 'true';
+      applyJobContext(form);
       form.addEventListener('submit', function (event) {
         event.preventDefault();
         submitForm(form);
       });
     });
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialiseForms);
+  } else {
+    initialiseForms();
+  }
 })();
