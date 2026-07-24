@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var ENDPOINT = 'https://script.google.com/a/macros/optimasolutionsintl.com/s/AKfycbzF1thaAD1eG3YBwHFGqOl8fcgrvi_qHdfV3c6LGpmy32kiBegNg-yBzB1le_pz_mTA/exec';
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbzF1thaAD1eG3YBwHFGqOl8fcgrvi_qHdfV3c6LGpmy32kiBegNg-yBzB1le_pz_mTA/exec';
   var MAX_FILE_BYTES = 5 * 1024 * 1024;
   var ALLOWED_EXTENSIONS = ['pdf', 'doc', 'docx', 'ppt', 'pptx'];
   var RESPONSE_SOURCE = 'optima-recruitment-backend';
