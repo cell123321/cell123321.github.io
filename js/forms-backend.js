@@ -4,9 +4,6 @@
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycbzF1thaAD1eG3YBwHFGqOl8fcgrvi_qHdfV3c6LGpmy32kiBegNg-yBzB1le_pz_mTA/exec';
   var MAX_FILE_BYTES = 5 * 1024 * 1024;
   var ALLOWED_EXTENSIONS = ['pdf', 'doc', 'docx', 'ppt', 'pptx'];
-  var CONFIRMATION_TIMEOUT_MS = 120000;
-  var POLL_INTERVAL_MS = 1500;
-  var POLL_REQUEST_TIMEOUT_MS = 12000;
 
   function endpointConfigured() {
     return /^https:\/\/script\.google\.com\/(?:a\/macros\/[^/]+\/|macros\/)s\/[^/]+\/exec$/.test(ENDPOINT);
@@ -59,10 +56,27 @@
   }
 
   function createRequestId() {
-    if (window.crypto && typeof window.crypto.randomUUID === 'function') {
-      return window.crypto.randomUUID();
+    var now = new Date();
+    var stamp = [
+      now.getUTCFullYear(),
+      String(now.getUTCMonth() + 1).padStart(2, '0'),
+      String(now.getUTCDate()).padStart(2, '0')
+    ].join('') + '-' + [
+      String(now.getUTCHours()).padStart(2, '0'),
+      String(now.getUTCMinutes()).padStart(2, '0'),
+      String(now.getUTCSeconds()).padStart(2, '0')
+    ].join('');
+
+    var randomPart = '';
+    if (window.crypto && typeof window.crypto.getRandomValues === 'function') {
+      var values = new Uint32Array(1);
+      window.crypto.getRandomValues(values);
+      randomPart = values[0].toString(36).toUpperCase().slice(-6).padStart(6, '0');
+    } else {
+      randomPart = Math.random().toString(36).slice(2, 8).toUpperCase().padEnd(6, '0');
     }
-    return 'optima-' + Date.now() + '-' + Math.random().toString(36).slice(2, 14);
+
+    return 'WEB-' + stamp + '-' + randomPart;
   }
 
   function readFile(file, allowedExtensions) {
@@ -105,13 +119,14 @@
 
   function buildPayload(form, fields, file) {
     var type = String(form.dataset.formType || '').toLowerCase();
+    var requestId = createRequestId();
     var payload = {
       formType: type,
       submittedAt: new Date().toISOString(),
       pageUrl: window.location.href,
       pageOrigin: window.location.origin,
-      source: 'Optima website — ' + type + ' form',
-      requestId: createRequestId(),
+      source: 'Optima website — ' + type + ' form | Submission reference: ' + requestId,
+      requestId: requestId,
       website: value(fields, 'website')
     };
 
@@ -255,87 +270,6 @@
     });
   }
 
-  function validStatusResponse(data, requestId) {
-    return data && data.requestId === requestId &&
-      (data.status === 'pending' || data.status === 'processing' || data.status === 'complete');
-  }
-
-  function requestStatus(requestId, attempt) {
-    return new Promise(function (resolve, reject) {
-      var callbackName = '__optimaStatus_' + requestId.replace(/[^a-zA-Z0-9_$]/g, '') + '_' + attempt;
-      var script = document.createElement('script');
-      var completed = false;
-      var timeoutId;
-
-      function cleanup() {
-        if (timeoutId) window.clearTimeout(timeoutId);
-        try {
-          delete window[callbackName];
-        } catch (error) {
-          window[callbackName] = undefined;
-        }
-        if (script.parentNode) script.parentNode.removeChild(script);
-      }
-
-      window[callbackName] = function (data) {
-        if (completed) return;
-        completed = true;
-        cleanup();
-        if (!validStatusResponse(data, requestId)) {
-          reject(new Error('The backend returned an invalid confirmation response.'));
-          return;
-        }
-        resolve(data);
-      };
-
-      script.onerror = function () {
-        if (completed) return;
-        completed = true;
-        cleanup();
-        reject(new Error('The confirmation service could not be reached.'));
-      };
-
-      timeoutId = window.setTimeout(function () {
-        if (completed) return;
-        completed = true;
-        cleanup();
-        reject(new Error('The confirmation request timed out.'));
-      }, POLL_REQUEST_TIMEOUT_MS);
-
-      script.async = true;
-      script.src = ENDPOINT +
-        '?action=status' +
-        '&requestId=' + encodeURIComponent(requestId) +
-        '&callback=' + encodeURIComponent(callbackName) +
-        '&_=' + Date.now();
-      document.head.appendChild(script);
-    });
-  }
-
-  async function waitForConfirmation(requestId) {
-    var started = Date.now();
-    var attempt = 0;
-    var lastError = null;
-
-    while (Date.now() - started < CONFIRMATION_TIMEOUT_MS) {
-      attempt += 1;
-      try {
-        var status = await requestStatus(requestId, attempt);
-        if (status.status === 'complete') return status;
-      } catch (error) {
-        lastError = error;
-      }
-
-      await new Promise(function (resolve) {
-        window.setTimeout(resolve, POLL_INTERVAL_MS);
-      });
-    }
-
-    throw new Error(lastError && lastError.message
-      ? 'The submission was sent, but confirmation was delayed. Please do not submit it repeatedly. Contact Optima if you do not receive a response.'
-      : 'The submission was sent, but confirmation was delayed. Please do not submit it repeatedly. Contact Optima if you do not receive a response.');
-  }
-
   async function submitForm(form) {
     if (!form.reportValidity()) return;
 
@@ -365,16 +299,13 @@
       var payload = buildPayload(form, fields, file);
 
       await submitPayload(payload);
-      setStatus(form, 'Submission sent. Confirming receipt…', 'pending');
-
-      var result = await waitForConfirmation(payload.requestId);
-      if (result.success !== true) {
-        throw new Error(result.message || 'The submission could not be completed.');
-      }
 
       form.reset();
-      var reference = result.id ? ' Reference: ' + result.id + '.' : '';
-      setStatus(form, (result.message || 'Thank you. Your submission has been received securely.') + reference, 'success');
+      setStatus(
+        form,
+        'Thank you. Your submission has been sent securely. Reference: ' + payload.requestId + '.',
+        'success'
+      );
     } catch (error) {
       console.error(error);
       setStatus(form, error.message || 'We could not submit the form. Please try again or contact Optima directly.', 'error');
