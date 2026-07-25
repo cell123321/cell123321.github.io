@@ -1,3 +1,3 @@
-Optima GitHub Website V20.15.0
-Backend target: Optima Recruitment Backend v1.9.0
-Production Apps Script endpoint ID: AKfycbzF1thaAD1eG3YBwHFGqOl8fcgrvi_qHdfV3c6LGpmy32kiBegNg-yBzB1le_pz_mTA
+Optima GitHub Website V20.16.0
+Backend: Optima Recruitment Backend v1.9.0 with Resend
+Form transport: inline hidden-iframe POST with JSONP receipt confirmation
