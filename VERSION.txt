@@ -1,2 +1,3 @@
-Optima Website V20.14
-Submission acknowledgement stability fix
+Optima GitHub Website V20.15.0
+Backend target: Optima Recruitment Backend v1.9.0
+Production Apps Script endpoint ID: AKfycbzF1thaAD1eG3YBwHFGqOl8fcgrvi_qHdfV3c6LGpmy32kiBegNg-yBzB1le_pz_mTA

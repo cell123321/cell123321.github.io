@@ -1971,7 +1971,8 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
 <section class="section" id="submit-cv"><div class="container grid-2"><div><span class="eyebrow">Candidate Registration</span><h2>Tell us what you want to do next.</h2><p class="lead">Share the type of role, sector, location and working arrangement you are seeking, then upload your CV for consideration for current and future opportunities.</p></div>
 <form class="form-card" data-form-type="candidate" data-optima-form=""><div aria-hidden="true" class="optima-honeypot" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;"><label for="candidate-website">Website</label><input autocomplete="off" id="candidate-website" name="website" tabindex="-1" type="text"/></div>
 <div class="form-grid">
-<div class="field"><label for="c-name">Full name</label><input id="c-name" name="full_name" required=""/></div>
+<div class="field"><label for="c-first-name">First name</label><input autocomplete="given-name" id="c-first-name" name="first_name" required=""/></div>
+<div class="field"><label for="c-last-name">Last name</label><input autocomplete="family-name" id="c-last-name" name="last_name" required=""/></div>
 <div class="field"><label for="c-email">Email</label><input id="c-email" name="email" required="" type="email"/></div>
 <div class="field"><label for="c-phone">Telephone</label><input id="c-phone" name="telephone" type="tel"/></div>
 <div class="field"><label for="c-industry">Industry</label><select id="c-industry" name="industry"><option>Healthcare</option><option>Construction &amp; Engineering</option><option>Financial Services</option><option>Pharmaceutical &amp; Life Sciences</option><option>Other</option></select></div>
@@ -2110,5 +2111,5 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
 </div>
 </footer>
 <script defer="" src="js/script.js?v=20.4"></script>
-<script defer src="js/forms-backend.js?v=20.14"></script></body>
+<script defer src="js/optima-backend-v20-15.js?v=20.15.0"></script></body>
 </html>
