@@ -1,3 +1,4 @@
-Optima GitHub Website V20.16.0
-Backend: Optima Recruitment Backend v1.9.0 with Resend
-Form transport: inline hidden-iframe POST with JSONP receipt confirmation
+Optima GitHub Website V20.18.0
+Backend target: Optima Recruitment Backend v1.9.0
+Forms: inline verified handler on contact, consultation, candidate and vacancy pages
+Resend: confirmation email API handled by backend v1.9.0

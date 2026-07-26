@@ -1,22 +1,48 @@
-# Optima Website V20.16 — Inline Backend Fix
+# Upload Optima Website V20.18
 
-This release removes the separate form JavaScript file. The complete submission code is embedded directly in each form page, so GitHub folder uploads, stale JavaScript files and browser caching cannot disable the forms.
+## Before uploading
 
-## Upload
+Keep the current GitHub commit available as a rollback point.
 
-1. Extract this ZIP.
-2. In the existing GitHub repository, upload all files and folders from inside the extracted folder.
-3. Replace files when prompted and commit to `main`.
-4. Delete these obsolete files from the repository if they still exist:
+## Upload procedure
+
+1. Extract `optima_github_v20_18_final_verified.zip`.
+2. Open the existing GitHub Pages repository.
+3. Upload every file and folder inside the extracted directory to the repository root.
+4. Replace the current files.
+5. Delete these obsolete files if they still exist:
    - `js/forms-backend.js`
    - `js/optima-backend-v20-15.js`
-5. Wait for the GitHub Pages deployment to complete.
-6. Open the live site in a private window.
+6. Commit directly to the branch used by GitHub Pages.
+7. Open **Actions** and wait for the Pages deployment to finish successfully.
 
-## Test
+## Confirm the new build is live
 
-Submit the contact form first, then the candidate form without a CV, then with a small PDF.
+Open the live site in a private browser window.
 
-A successful submission displays the actual backend record ID, such as `ENQ-000004` or `CAN-000004`. The form does not show success merely because a request was attempted; it waits for the Apps Script receipt.
+Open page source and search for:
 
-No Apps Script change is required. The website targets the existing production `/exec` deployment.
+`optima-build`
+
+The page should contain:
+
+`content="20.18.0"`
+
+The browser console will also show:
+
+`Optima form handler v20.18.0 initialised`
+
+## Production test order
+
+1. Submit the Contact form first.
+2. Confirm an `ENQ-` record appears in the Enquiries sheet.
+3. Confirm the page shows the same record ID.
+4. Submit the Candidate form without a CV.
+5. Confirm a `CAN-` record appears in Candidates.
+6. Check Resend → Emails for the acknowledgement.
+7. Test a small PDF CV.
+8. Test the vacancy form last.
+
+## Do not change Apps Script
+
+This release targets the existing active Apps Script v1.9 deployment. No Apps Script code or deployment change is required for this website upload.
