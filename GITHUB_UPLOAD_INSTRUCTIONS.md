@@ -1,34 +1,54 @@
-# Optima Website V20.19 — Reliable Submission Transport
+# Optima Website V20.20 — Correct Apps Script Endpoint
 
-## Why V20.18 timed out
+## Root cause corrected
 
-V20.18 waited for a second cross-domain receipt check from Google Apps Script.
-The browser could not reliably read that confirmation, so the page waited for
-90 seconds and then displayed an error.
+The website was sending forms to the wrong Apps Script deployment:
 
-V20.19 removes that blocking receipt mechanism. It uses the same direct
-`no-cors` `text/plain` POST method that previously reached Google Sheets
-successfully. The Apps Script v1.9 backend accepts this JSON format.
+OLD:
+`https://script.google.com/macros/s/AKfycbzF1thaAD1eG3YBwHFGqOl8fcgrvi_qHdfV3c6LGpmy32kiBegNg-yBzB1le_pz_mTA/exec`
+
+The active Apps Script deployment supplied by the owner is:
+
+NEW:
+`https://script.google.com/macros/s/AKfycbwew1asSJyU3zRPill38cweig1DTUvtnK1_eee-Zsqt-D3zvX7aN50YcmEMWYQV5X_1/exec`
+
+All four forms now use the NEW deployment:
+
+- Contact
+- Consultation
+- Candidate
+- Vacancy
 
 ## Upload
 
-1. Extract the ZIP.
-2. Upload every file and folder to the root of the current GitHub Pages repository.
-3. Replace existing files.
-4. Commit to the GitHub Pages branch.
+1. Extract this ZIP.
+2. Upload every extracted file and folder to the root of the existing GitHub Pages repository.
+3. Replace the current files.
+4. Commit to the branch used by GitHub Pages.
 5. Wait for the Pages deployment to complete.
-6. Open the live website in a private window.
 
-## Verify the build
+## Confirm V20.20 is live
 
-View page source and search for `optima-build`. It must show `20.19.0`.
-The browser console will show `Optima form handler v20.19.0 initialised`.
+Open the live page source and search for:
 
-## Test
+`optima-build`
 
-Submit Contact first. The page should stop submitting as soon as Google accepts
-the network request and show a `WEB-...` reference. Then check the Enquiries
-sheet. Candidate acknowledgements continue to be sent through Resend by the
-Apps Script v1.9 backend.
+It must show:
 
-No Apps Script change is required.
+`content="20.20.0"`
+
+On a form page, search the source for:
+
+`AKfycbwew1asSJyU3zRPill38cweig1DTUvtnK1_eee-Zsqt-D3zvX7aN50YcmEMWYQV5X_1`
+
+The OLD deployment ID must not appear.
+
+## Production test
+
+1. Submit the Contact form first.
+2. Check Apps Script > My Executions for a new `doPost` Web app execution.
+3. Check the Enquiries sheet for a new ENQ record.
+4. Test the Candidate form.
+5. Check Resend > Emails for the acknowledgement.
+
+No further GitHub or endpoint changes should be made unless the Apps Script deployment URL changes again.

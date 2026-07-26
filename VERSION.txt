@@ -1,3 +1,4 @@
-Optima GitHub Website V20.19.0
-Backend target: Optima Recruitment Backend v1.9.0
-Submission transport: direct no-cors text/plain fetch with credentials omitted
+Optima GitHub Website V20.20.0
+Backend target: Optima Recruitment Backend v2.0.0
+Production endpoint: https://script.google.com/macros/s/AKfycbwew1asSJyU3zRPill38cweig1DTUvtnK1_eee-Zsqt-D3zvX7aN50YcmEMWYQV5X_1/exec
+Change: corrected website endpoint to the deployment supplied by the owner.
