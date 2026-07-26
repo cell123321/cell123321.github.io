@@ -1,48 +1,34 @@
-# Upload Optima Website V20.18
+# Optima Website V20.19 — Reliable Submission Transport
 
-## Before uploading
+## Why V20.18 timed out
 
-Keep the current GitHub commit available as a rollback point.
+V20.18 waited for a second cross-domain receipt check from Google Apps Script.
+The browser could not reliably read that confirmation, so the page waited for
+90 seconds and then displayed an error.
 
-## Upload procedure
+V20.19 removes that blocking receipt mechanism. It uses the same direct
+`no-cors` `text/plain` POST method that previously reached Google Sheets
+successfully. The Apps Script v1.9 backend accepts this JSON format.
 
-1. Extract `optima_github_v20_18_final_verified.zip`.
-2. Open the existing GitHub Pages repository.
-3. Upload every file and folder inside the extracted directory to the repository root.
-4. Replace the current files.
-5. Delete these obsolete files if they still exist:
-   - `js/forms-backend.js`
-   - `js/optima-backend-v20-15.js`
-6. Commit directly to the branch used by GitHub Pages.
-7. Open **Actions** and wait for the Pages deployment to finish successfully.
+## Upload
 
-## Confirm the new build is live
+1. Extract the ZIP.
+2. Upload every file and folder to the root of the current GitHub Pages repository.
+3. Replace existing files.
+4. Commit to the GitHub Pages branch.
+5. Wait for the Pages deployment to complete.
+6. Open the live website in a private window.
 
-Open the live site in a private browser window.
+## Verify the build
 
-Open page source and search for:
+View page source and search for `optima-build`. It must show `20.19.0`.
+The browser console will show `Optima form handler v20.19.0 initialised`.
 
-`optima-build`
+## Test
 
-The page should contain:
+Submit Contact first. The page should stop submitting as soon as Google accepts
+the network request and show a `WEB-...` reference. Then check the Enquiries
+sheet. Candidate acknowledgements continue to be sent through Resend by the
+Apps Script v1.9 backend.
 
-`content="20.18.0"`
-
-The browser console will also show:
-
-`Optima form handler v20.18.0 initialised`
-
-## Production test order
-
-1. Submit the Contact form first.
-2. Confirm an `ENQ-` record appears in the Enquiries sheet.
-3. Confirm the page shows the same record ID.
-4. Submit the Candidate form without a CV.
-5. Confirm a `CAN-` record appears in Candidates.
-6. Check Resend → Emails for the acknowledgement.
-7. Test a small PDF CV.
-8. Test the vacancy form last.
-
-## Do not change Apps Script
-
-This release targets the existing active Apps Script v1.9 deployment. No Apps Script code or deployment change is required for this website upload.
+No Apps Script change is required.

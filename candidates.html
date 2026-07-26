@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head><meta content="20.18.0" name="optima-build"/>
+<head><meta content="20.19.0" name="optima-build"/>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Candidates | Optima</title>
@@ -2114,11 +2114,11 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
 (function () {
   'use strict';
 
-  var CLIENT_VERSION = '20.18.0';
+  var CLIENT_VERSION = '20.19.0';
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycbzF1thaAD1eG3YBwHFGqOl8fcgrvi_qHdfV3c6LGpmy32kiBegNg-yBzB1le_pz_mTA/exec';
   var MAX_FILE_BYTES = 5 * 1024 * 1024;
   var ALLOWED_EXTENSIONS = ['pdf', 'doc', 'docx', 'ppt', 'pptx'];
-  console.info('Optima form handler v20.18.0 initialised');
+  console.info('Optima form handler v20.19.0 initialised');
 
   function endpointConfigured() {
     return /^https:\/\/script\.google\.com\/(?:a\/macros\/[^/]+\/|macros\/)s\/[^/]+\/exec$/.test(ENDPOINT);
@@ -2373,146 +2373,28 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
     button.textContent = submitting ? 'Submitting…' : button.dataset.originalText;
   }
 
-  var pendingSubmissions = {};
-
-  function trustedBackendOrigin(origin) {
-    return origin === 'https://script.google.com' ||
-      /^https:\/\/script\.googleusercontent\.com$/.test(origin);
-  }
-
-  function cleanupSubmission(requestId) {
-    var pending = pendingSubmissions[requestId];
-    if (!pending) return;
-    if (pending.timeoutId) window.clearTimeout(pending.timeoutId);
-    if (pending.pollTimer) window.clearTimeout(pending.pollTimer);
-    if (pending.iframe && pending.iframe.parentNode) pending.iframe.parentNode.removeChild(pending.iframe);
-    if (pending.form && pending.form.parentNode) pending.form.parentNode.removeChild(pending.form);
-    delete pendingSubmissions[requestId];
-  }
-
-  function finishSubmission(requestId, result) {
-    var pending = pendingSubmissions[requestId];
-    if (!pending) return;
-    cleanupSubmission(requestId);
-    if (result && result.success === true) {
-      pending.resolve(result);
-    } else {
-      pending.reject(new Error(
-        result && result.message
-          ? result.message
-          : 'We could not confirm the submission. Please contact Optima directly.'
+  function submitPayload(payload) {
+    if (!window.fetch) {
+      return Promise.reject(new Error(
+        'Your browser cannot use the secure submission service. Please update your browser or contact Optima directly.'
       ));
     }
-  }
 
-  function pollReceipt(requestId) {
-    var pending = pendingSubmissions[requestId];
-    if (!pending) return;
-
-    var callbackName = '__optimaReceipt_' + requestId.replace(/[^A-Za-z0-9_]/g, '_') + '_' + Date.now();
-    var script = document.createElement('script');
-    var completed = false;
-
-    function dispose() {
-      if (completed) return;
-      completed = true;
-      try { delete window[callbackName]; } catch (_) { window[callbackName] = undefined; }
-      if (script.parentNode) script.parentNode.removeChild(script);
-    }
-
-    window[callbackName] = function (result) {
-      dispose();
-      if (!pendingSubmissions[requestId]) return;
-      if (result && result.status === 'complete') {
-        finishSubmission(requestId, result);
-        return;
-      }
-      pendingSubmissions[requestId].pollTimer = window.setTimeout(function () {
-        pollReceipt(requestId);
-      }, 2500);
-    };
-
-    script.onerror = function () {
-      dispose();
-      if (!pendingSubmissions[requestId]) return;
-      pendingSubmissions[requestId].pollTimer = window.setTimeout(function () {
-        pollReceipt(requestId);
-      }, 4000);
-    };
-
-    script.src = ENDPOINT +
-      '?action=status&requestId=' + encodeURIComponent(requestId) +
-      '&callback=' + encodeURIComponent(callbackName) +
-      '&_=' + Date.now();
-    document.head.appendChild(script);
-  }
-
-  window.addEventListener('message', function (event) {
-    if (!trustedBackendOrigin(event.origin)) return;
-    var data = event.data;
-    if (!data || data.source !== 'optima-recruitment-backend') return;
-    var requestId = String(data.requestId || '');
-    if (!pendingSubmissions[requestId]) return;
-    finishSubmission(requestId, data);
-  });
-
-  function submitPayload(payload) {
-    return new Promise(function (resolve, reject) {
-      var requestId = String(payload.requestId || '');
-      if (!requestId) {
-        reject(new Error('The submission reference could not be created. Please refresh and try again.'));
-        return;
-      }
-
-      var frameName = 'optima_backend_' + requestId.replace(/[^A-Za-z0-9_]/g, '_');
-      var iframe = document.createElement('iframe');
-      iframe.name = frameName;
-      iframe.title = 'Secure form submission';
-      iframe.setAttribute('aria-hidden', 'true');
-      iframe.style.display = 'none';
-
-      var postForm = document.createElement('form');
-      postForm.method = 'POST';
-      postForm.action = ENDPOINT;
-      postForm.target = frameName;
-      postForm.acceptCharset = 'UTF-8';
-      postForm.style.display = 'none';
-
-      var outgoing = Object.assign({}, payload, { responseMode: 'iframe' });
-      Object.keys(outgoing).forEach(function (key) {
-        var input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        var valueToSend = outgoing[key];
-        input.value = valueToSend === true ? 'true' : valueToSend === false ? 'false' : String(valueToSend == null ? '' : valueToSend);
-        postForm.appendChild(input);
-      });
-
-      pendingSubmissions[requestId] = {
-        resolve: resolve,
-        reject: reject,
-        iframe: iframe,
-        form: postForm,
-        timeoutId: window.setTimeout(function () {
-          if (!pendingSubmissions[requestId]) return;
-          cleanupSubmission(requestId);
-          reject(new Error('The submission could not be confirmed within 90 seconds. Please contact Optima and quote reference ' + requestId + '.'));
-        }, 90000),
-        pollTimer: null
-      };
-
-      document.body.appendChild(iframe);
-      document.body.appendChild(postForm);
-
-      try {
-        postForm.submit();
-        pendingSubmissions[requestId].pollTimer = window.setTimeout(function () {
-          pollReceipt(requestId);
-        }, 2000);
-      } catch (error) {
-        cleanupSubmission(requestId);
-        reject(error);
-      }
+    // Google Apps Script does not return browser-readable CORS headers.
+    // A no-cors text/plain request is therefore used deliberately. The backend
+    // accepts text/plain JSON and processes the submission under doPost().
+    // credentials:'omit' also prevents signed-in Google account routing from
+    // interfering with the public web-app deployment.
+    return window.fetch(ENDPOINT, {
+      method: 'POST',
+      mode: 'no-cors',
+      credentials: 'omit',
+      cache: 'no-store',
+      redirect: 'follow',
+      headers: {
+        'Content-Type': 'text/plain;charset=UTF-8'
+      },
+      body: JSON.stringify(payload)
     });
   }
 
@@ -2544,12 +2426,12 @@ input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue)
         : null;
       var payload = buildPayload(form, fields, file);
 
-      var result = await submitPayload(payload);
+      await submitPayload(payload);
 
       form.reset();
       setStatus(
         form,
-        'Thank you. Your submission has been received. Record: ' + (result.id || payload.requestId) + '.',
+        'Thank you. Your submission has been sent securely. Reference: ' + payload.requestId + '.',
         'success'
       );
     } catch (error) {
